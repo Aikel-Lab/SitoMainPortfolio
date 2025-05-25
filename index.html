@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimpleWebPage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        dark: '#1F2937',
+                        light: '#F3F4F6',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .template-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .hero-video {
+            height: 500px;
+        }
+        @media (max-width: 768px) {
+            .hero-video {
+                height: 300px;
+            }
+        }
+        .contact-form input,
+        .contact-form textarea {
+            transition: all 0.3s ease;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #3B82F6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #3B82F6;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans transition-colors duration-300 dark:bg-gray-900 dark:text-gray-100">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 bg-white shadow-md z-50 dark:bg-gray-800 transition-colors duration-300">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold">
+                    <span>LOGO</span>
+                </div>
+                <span class="text-xl font-semibold dark:text-white">Delta Web Site</span>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-white" data-i18n="home">Home</a>
+                <a href="#services" class="nav-link text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-white" data-i18n="services">Servizi</a>
+                <a href="#about" class="nav-link text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-white" data-i18n="about">Chi Siamo</a>
+                <a href="#gallery" class="nav-link text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-white" data-i18n="gallery">Galleria</a>
+                <a href="#contact" class="nav-link text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-white" data-i18n="contact">Contatti</a>
+            </nav>
+            
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" class="p-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-yellow-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-300 flex items-center space-x-2">
+                    <i id="theme-icon" class="fas fa-moon"></i>
+                    <span id="theme-label" class="ml-2" data-i18n="themeLabel">Notte</span>
+                </button>
+                <select id="language-select" class="p-2 rounded bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-white appearance-none cursor-pointer" style="background-position: right 0.5rem center;">
+                    <option value="it">🇮🇹 Italiano</option>
+                    <option value="en">🇬🇧 English</option>
+                    <option value="sl">🇸🇮 Slovensko</option>
+                </select>
+                <button class="md:hidden text-gray-700 dark:text-white" id="mobile-menu-button">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 shadow-lg transition-all duration-300">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#home" class="nav-link text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-white py-2" data-i18n="home">Home</a>
+                <a href="#services" class="nav-link text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-white py-2" data-i18n="services">Servizi</a>
+                <a href="#about" class="nav-link text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-white py-2" data-i18n="about">Chi Siamo</a>
+                <a href="#gallery" class="nav-link text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-white py-2" data-i18n="gallery">Galleria</a>
+                <a href="#contact" class="nav-link text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-white py-2" data-i18n="contact">Contatti</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-12">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4" data-i18n="heroTitle">Il tuo business online con stile</h1>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-8" data-i18n="heroText">Ottieni la visibilità che meriti. Creiamo siti web professionali e ottimizzati, la soluzione rapida e semplice per espandere la tua clientela e consolidare la tua immagine online.</p>
+                    <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                        <a href="#gallery" class="bg-primary hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-colors duration-300 text-center" data-i18n="chooseTemplateBtn">Scegli il tuo template</a>
+                        <a href="#contact" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-3 px-6 rounded-lg shadow-md transition-colors duration-300 border border-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white dark:border-gray-600 text-center" data-i18n="contactUsBtn">Contattaci</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="hero-video bg-white dark:bg-gray-700 rounded-xl shadow-xl overflow-hidden relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-play-circle text-6xl text-primary opacity-80"></i>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                            <h3 class="text-white font-semibold">Guarda i nostri template in azione</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-white dark:bg-gray-800 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4" data-i18n="servicesTitle">I nostri servizi</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto" data-i18n="servicesSubtitle">Tutto ciò di cui hai bisogno per avere una presenza online professionale</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 justify-center">
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 md:col-start-2">
+                    <div class="w-14 h-14 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-laptop-code text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-3" data-i18n="service1Title">Il tuo sito web su misura</h3>
+                    <p class="text-gray-600 dark:text-gray-300" data-i18n="service1Desc">Creiamo il tuo sito web su misura per il tuo business, ottimizzato per dispositivi mobili e motori di ricerca. Semplice, snello, senza backend o complicati e costosi pannelli da mantenere.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-12">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Team" class="rounded-xl shadow-lg w-full">
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-6" data-i18n="aboutTitle">Chi siamo</h2>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6" data-i18n="aboutDesc1">Siamo un team di professionisti appassionati di tecnologia e design, dedicati a creare soluzioni web che aiutano le piccole imprese e i professionisti a crescere online.</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-8" data-i18n="aboutDesc2">Con oltre 10 anni di esperienza nel settore, abbiamo aiutato centinaia di clienti a costruire la loro presenza digitale con siti web belli, funzionali e facili da gestire.</p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-primary mr-3"></i>
+                            <span class="text-gray-700 dark:text-gray-300" data-i18n="aboutExp">Esperienza decennale</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-primary mr-3"></i>
+                            <span class="text-gray-700 dark:text-gray-300" data-i18n="aboutSupport">Supporto continuo</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-primary mr-3"></i>
+                            <span class="text-gray-700 dark:text-gray-300" data-i18n="aboutDesign">Design personalizzato</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-primary mr-3"></i>
+                            <span class="text-gray-700 dark:text-gray-300" data-i18n="aboutTech">Tecnologie moderne</span>
+                        </div>
+                    </div>
+                    
+                    <a href="#contact" class="inline-block bg-primary hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-colors duration-300" data-i18n="contactUsBtn">Contattaci</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Template Gallery Section -->
+    <section id="gallery" class="py-16 bg-white dark:bg-gray-800 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4" data-i18n="galleryTitle">Scegli il tuo template</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-6" data-i18n="gallerySubtitle">Seleziona tra i nostri template professionali e personalizzalo per il tuo business</p>
+                
+                <div class="flex flex-wrap justify-center gap-3 mb-8">
+                    <button class="filter-btn px-4 py-2 bg-primary text-white rounded-full shadow-sm" data-filter="all" data-i18n="allBtn">Tutti</button>
+                    <button class="filter-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded-full shadow-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300" data-filter="shop" data-i18n="shopBtn">Negozi</button>
+                    <button class="filter-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded-full shadow-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300" data-filter="professional" data-i18n="professionalBtn">Professionisti</button>
+                    <button class="filter-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded-full shadow-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300" data-filter="restaurant" data-i18n="restaurantBtn">Ristoranti</button>
+                    <button class="filter-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded-full shadow-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300" data-filter="medical" data-i18n="medicalBtn">Medici</button>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-3 mb-8">
+                    <button class="style-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded-full shadow-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300" data-style="all" data-i18n="allStylesBtn">Tutti gli stili</button>
+                    <button class="style-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded-full shadow-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300" data-style="minimal" data-i18n="minimalBtn">Minimal</button>
+                    <button class="style-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded-full shadow-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300" data-style="classic" data-i18n="classicBtn">Classico</button>
+                    <button class="style-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded-full shadow-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300" data-style="modern" data-i18n="modernBtn">Moderno</button>
+                    <button class="style-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded-full shadow-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300" data-style="elegant" data-i18n="elegantBtn">Elegante</button>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-3">
+                    <button class="color-btn w-8 h-8 rounded-full shadow-sm bg-red-500 hover:opacity-80 transition-opacity duration-300" data-color="red"></button>
+                    <button class="color-btn w-8 h-8 rounded-full shadow-sm bg-blue-500 hover:opacity-80 transition-opacity duration-300" data-color="blue"></button>
+                    <button class="color-btn w-8 h-8 rounded-full shadow-sm bg-green-500 hover:opacity-80 transition-opacity duration-300" data-color="green"></button>
+                    <button class="color-btn w-8 h-8 rounded-full shadow-sm bg-purple-500 hover:opacity-80 transition-opacity duration-300" data-color="purple"></button>
+                    <button class="color-btn w-8 h-8 rounded-full shadow-sm bg-yellow-500 hover:opacity-80 transition-opacity duration-300" data-color="yellow"></button>
+                    <button class="color-btn w-8 h-8 rounded-full shadow-sm bg-pink-500 hover:opacity-80 transition-opacity duration-300" data-color="pink"></button>
+                    <button class="color-btn w-8 h-8 rounded-full shadow-sm bg-indigo-500 hover:opacity-80 transition-opacity duration-300" data-color="indigo"></button>
+                    <button class="color-btn w-8 h-8 rounded-full shadow-sm bg-gray-500 hover:opacity-80 transition-opacity duration-300" data-color="gray"></button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="template-container">
+                <!-- Template 1 -->
+                <div class="template-card bg-white dark:bg-gray-700 rounded-xl shadow-md overflow-hidden transition-all duration-300" data-category="professional" data-style="modern" data-color="blue">
+                    <div class="h-48 bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center">
+                        <i class="fas fa-briefcase text-white text-6xl opacity-80"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2" data-i18n="template1Title">Studio Professionale</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4" data-i18n="template1Desc">Design moderno per avvocati, architetti e altri professionisti con sezione documenti integrata.</p>
+                        <div class="flex justify-between">
+                            <button class="preview-btn px-4 py-2 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-300 rounded-lg shadow-sm hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors duration-300 flex items-center" data-i18n="previewBtn">
+                                <i class="fas fa-eye mr-2"></i> Anteprima
+                            </button>
+                            <button class="customize-btn px-4 py-2 bg-primary hover:bg-blue-600 text-white rounded-lg shadow-sm transition-colors duration-300 flex items-center" data-i18n="customizeBtn">
+                                <i class="fas fa-paint-brush mr-2"></i> Personalizza
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Template 2 -->
+                <div class="template-card bg-white dark:bg-gray-700 rounded-xl shadow-md overflow-hidden transition-all duration-300" data-category="shop" data-style="minimal", data-color="green">
+                    <div class="h-48 bg-gradient-to-r from-green-400 to-green-600 flex items-center justify-center">
+                        <i class="fas fa-shopping-bag text-white text-6xl opacity-80"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2" data-i18n="template2Title">Negozio Minimal</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4" data-i18n="template2Desc">Design pulito ed essenziale per negozi fisici e online, con integrazione e-commerce.</p>
+                        <div class="flex justify-between">
+                            <button class="preview-btn px-4 py-2 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-300 rounded-lg shadow-sm hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors duration-300 flex items-center" data-i18n="previewBtn">
+                                <i class="fas fa-eye mr-2"></i> Anteprima
+                            </button>
+                            <button class="customize-btn px-4 py-2 bg-primary hover:bg-blue-600 text-white rounded-lg shadow-sm transition-colors duration-300 flex items-center" data-i18n="customizeBtn">
+                                <i class="fas fa-paint-brush mr-2"></i> Personalizza
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Template 3 -->
+                <div class="template-card bg-white dark:bg-gray-700 rounded-xl shadow-md overflow-hidden transition-all duration-300" data-category="restaurant" data-style="elegant" data-color="red">
+                    <div class="h-48 bg-gradient-to-r from-red-400 to-red-600 flex items-center justify-center">
+                        <i class="fas fa-utensils text-white text-6xl opacity-80"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2" data-i18n="template3Title">Ristorante Elegante</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4" data-i18n="template3Desc">Template sofisticato per ristoranti con menu digitale, galleria foto e prenotazioni online.</p>
+                        <div class="flex justify-between">
+                            <button class="preview-btn px-4 py-2 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-300 rounded-lg shadow-sm hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors duration-300 flex items-center" data-i18n="previewBtn">
+                                <i class="fas fa-eye mr-2"></i> Anteprima
+                            </button>
+                            <button class="customize-btn px-4 py-2 bg-primary hover:bg-blue-600 text-white rounded-lg shadow-sm transition-colors duration-300 flex items-center" data-i18n="customizeBtn">
+                                <i class="fas fa-paint-brush mr-2"></i> Personalizza
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Template 4 -->
+                <div class="template-card bg-white dark:bg-gray-700 rounded-xl shadow-md overflow-hidden transition-all duration-300" data-category="medical" data-style="classic" data-color="blue">
+                    <div class="h-48 bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center">
+                        <i class="fas fa-heartbeat text-white text-6xl opacity-80"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2" data-i18n="template4Title">Studio Medico</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4" data-i18n="template4Desc">Design classico per studi medici con sezione prenotazioni e informazioni per pazienti.</p>
+                        <div class="flex justify-between">
+                            <button class="preview-btn px-4 py-2 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-300 rounded-lg shadow-sm hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors duration-300 flex items-center" data-i18n="previewBtn">
+                                <i class="fas fa-eye mr-2"></i> Anteprima
+                            </button>
+                            <button class="customize-btn px-4 py-2 bg-primary hover:bg-blue-600 text-white rounded-lg shadow-sm transition-colors duration-300 flex items-center" data-i18n="customizeBtn">
+                                <i class="fas fa-paint-brush mr-2"></i> Personalizza
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Template 5 -->
+                <div class="template-card bg-white dark:bg-gray-700 rounded-xl shadow-md overflow-hidden transition-all duration-300" data-category="professional" data-style="modern" data-color="purple">
+                    <div class="h-48 bg-gradient-to-r from-purple-400 to-purple-600 flex items-center justify-center">
+                        <i class="fas fa-chart-line text-white text-6xl opacity-80"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2" data-i18n="template5Title">Consulenza Moderna</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4" data-i18n="template5Desc">Template moderno per consulenti finanziari e aziendali con sezione portfolio.</p>
+                        <div class="flex justify-between">
+                            <button class="preview-btn px-4 py-2 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-300 rounded-lg shadow-sm hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors duration-300 flex items-center" data-i18n="previewBtn">
+                                <i class="fas fa-eye mr-2"></i> Anteprima
+                            </button>
+                            <button class="customize-btn px-4 py-2 bg-primary hover:bg-blue-600 text-white rounded-lg shadow-sm transition-colors duration-300 flex items-center" data-i18n="customizeBtn">
+                                <i class="fas fa-paint-brush mr-2"></i> Personalizza
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Template 6 -->
+                <div class="template-card bg-white dark:bg-gray-700 rounded-xl shadow-md overflow-hidden transition-all duration-300" data-category="shop" data-style="classic" data-color="yellow">
+                    <div class="h-48 bg-gradient-to-r from-yellow-400 to-yellow-600 flex items-center justify-center">
+                        <i class="fas fa-store-alt text-white text-6xl opacity-80"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2" data-i18n="template6Title">Negozio Classico</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4" data-i18n="template6Desc">Design tradizionale per negozi fisici con galleria prodotti e informazioni sul negozio.</p>
+                        <div class="flex justify-between">
+                            <button class="preview-btn px-4 py-2 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-300 rounded-lg shadow-sm hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors duration-300 flex items-center" data-i18n="previewBtn">
+                                <i class="fas fa-eye mr-2"></i> Anteprima
+                            </button>
+                            <button class="customize-btn px-4 py-2 bg-primary hover:bg-blue-600 text-white rounded-lg shadow-sm transition-colors duration-300 flex items-center" data-i18n="customizeBtn">
+                                <i class="fas fa-paint-brush mr-2"></i> Personalizza
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="px-6 py-3 bg-primary hover:bg-blue-600 text-white font-semibold rounded-lg shadow-md transition-colors duration-300 inline-flex items-center" data-i18n="loadMoreBtn">
+                    <i class="fas fa-plus mr-2"></i> Carica altri template
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4" data-i18n="contactTitle">Contattaci</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto" data-i18n="contactSubtitle">Compila il form per richiedere informazioni o un preventivo personalizzato</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-8">
+                <div class="lg:w-1/2">
+                    <form class="contact-form bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-700 dark:text-gray-300 mb-2" data-i18n="nameLabel">Nome e Cognome</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white" required>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="email" class="block text-gray-700 dark:text-gray-300 mb-2" data-i18n="emailLabel">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white" required>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="phone" class="block text-gray-700 dark:text-gray-300 mb-2" data-i18n="phoneLabel">Telefono</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white">
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="message" class="block text-gray-700 dark:text-gray-300 mb-2" data-i18n="messageLabel">Messaggio</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white" required></textarea>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="privacy" class="w-4 h-4 text-primary rounded focus:ring-primary border-gray-300 dark:border-gray-600 dark:bg-gray-700" required>
+                                <label for="privacy" class="ml-2 text-sm text-gray-700 dark:text-gray-300" data-i18n="privacyPolicyLabel">Acconsento al trattamento dei miei dati personali secondo la Privacy Policy</label>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-primary hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-colors duration-300" data-i18n="sendMessageBtn">Invia messaggio</button>
+                    </form>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md h-full">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-6" data-i18n="contactInfoTitle">Informazioni di contatto</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-4 mt-1">
+                                    <i class="fas fa-map-marker-alt text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800 dark:text-white mb-1" data-i18n="addressTitle">Indirizzo</h4>
+                                    <p class="text-gray-600 dark:text-gray-300" data-i18n="addressDesc">Via Roma 123, 00100 Roma, Italia</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-4 mt-1">
+                                    <i class="fas fa-phone-alt text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800 dark:text-white mb-1" data-i18n="phoneTitle">Telefono</h4>
+                                    <p class="text-gray-600 dark:text-gray-300" data-i18n="phoneDesc">+39 3209044901</p>
+                                    <p class="text-gray-600 dark:text-gray-300" data-i18n="phoneHours">Lun-Ven: 9:00-22:00</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-4 mt-1">
+                                    <i class="fas fa-envelope text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800 dark:text-white mb-1" data-i18n="emailTitle">Email</h4>
+                                    <p class="text-gray-600 dark:text-gray-300" data-i18n="emailDesc">info@businesswebsite.it</p>
+                                    <p class="text-gray-600 dark:text-gray-300" data-i18n="emailResponse">Rispondiamo entro 24 ore</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-4 mt-1">
+                                    <i class="fas fa-share-alt text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800 dark:text-white mb-1" data-i18n="socialMediaTitle">Social Media</h4>
+                                    <div class="flex space-x-4 mt-2">
+                                        <a href="#" class="w-8 h-8 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white transition-colors duration-300">
+                                            <i class="fab fa-facebook-f"></i>
+                                        </a>
+                                        <a href="#" class="w-8 h-8 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-blue-400 hover:text-white transition-colors duration-300">
+                                            <i class="fab fa-twitter"></i>
+                                        </a>
+                                        <a href="#" class="w-8 h-8 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-pink-600 hover:text-white transition-colors duration-300">
+                                            <i class="fab fa-instagram"></i>
+                                        </a>
+                                        <a href="#" class="w-8 h-8 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-green-500 hover:text-white transition-colors duration-300">
+                                            <i class="fab fa-whatsapp"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-medium text-gray-800 dark:text-white mb-4" data-i18n="openingHoursTitle">Orari di apertura</h4>
+                            <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4">
+                                <div class="flex justify-between py-2 border-b border-gray-200 dark:border-gray-500">
+                                    <span class="text-gray-700 dark:text-gray-300" data-i18n="mondayFriday">Lunedì - Venerdì</span>
+                                    <span class="font-medium text-gray-800 dark:text-white" data-i18n="mondayFridayHours">9:00 - 22:00</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-gray-200 dark:border-gray-500">
+                                    <span class="text-gray-700 dark:text-gray-300" data-i18n="saturday">Sabato</span>
+                                    <span class="font-medium text-gray-800 dark:text-white" data-i18n="saturdayHours">9:00 - 22:00</span>
+                                </div>
+                                <div class="flex justify-between py-2">
+                                    <span class="text-gray-700 dark:text-gray-300" data-i18n="sunday">Domenica</span>
+                                    <span class="font-medium text-gray-800 dark:text-white" data-i18n="sundayHours">Chiuso</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="bg-white dark:bg-gray-800 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="rounded-xl overflow-hidden shadow-lg">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.670060828012!2d12.4922303154438!3d41.90278377922045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132f6053278340d5%3A0x6a6b3a5ee3a4a0a1!2sPiazza%20Navona%2C%20Roma%20RM%2C%20Italia!5e0!3m2!1sit!2sus!4v1623256789012!5m2!1sit!2sus" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" class="dark:filter dark:brightness-75"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold">
+                            <span>LOGO</span>
+                        </div>
+                        <span class="text-xl font-semibold text-white">Business Name</span>
+                    </div>
+                    <p class="mb-4" data-i18n="footerDesc">Creiamo siti web professionali per aiutare il tuo business a crescere online.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4" data-i18n="quickLinks">Link veloci</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="hover:text-white transition-colors duration-300" data-i18n="home">Home</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors duration-300" data-i18n="services">Servizi</a></li>
+                        <li><a href="#about" class="hover:text-white transition-colors duration-300" data-i18n="about">Chi siamo</a></li>
+                        <li><a href="#gallery" class="hover:text-white transition-colors duration-300" data-i18n="gallery">Galleria</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors duration-300" data-i18n="contact">Contatti</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4" data-i18n="footerServices">Servizi</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white transition-colors duration-300" data-i18n="websitesService">Siti Web</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4" data-i18n="newsletter">Newsletter</h3>
+                    <p class="mb-4" data-i18n="newsletterDesc">Iscriviti per ricevere aggiornamenti e offerte speciali.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="La tua email" class="px-4 py-2 w-full rounded-l-lg focus:outline-none text-gray-800" data-i18n-placeholder="newsletterPlaceholder">
+                        <button type="submit" class="bg-primary hover:bg-blue-600 text-white px-4 py-2 rounded-r-lg transition-colors duration-300" data-i18n="newsletterBtn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p data-i18n="copyright">© 2025 Business Website. Tutti i diritti riservati.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition-colors duration-300" data-i18n="privacy">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors duration-300" data-i18n="terms">Termini e condizioni</a>
+                    <a href="#" class="hover:text-white transition-colors duration-300" data-i18n="cookie">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/393209044901" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-colors duration-300 z-50">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 left-6 bg-primary hover:bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 opacity-0 invisible z-50">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Template Preview Modal -->
+    <div id="preview-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden transition-opacity duration-300">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-6xl max-h-screen overflow-auto relative m-4">
+            <button id="close-modal" class="absolute top-4 right-4 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 text-2xl z-50">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="p-4">
+                <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-4" data-i18n="previewTitle">Anteprima Template</h3>
+                <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-2">
+                    <div class="w-full h-96 bg-white dark:bg-gray-600 rounded border border-gray-300 dark:border-gray-500 flex items-center justify-center">
+                        <p class="text-gray-500 dark:text-gray-400" data-i18n="previewPlaceholder">Anteprima del template selezionato</p>
+                    </div>
+                </div>
+                <div class="mt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-2" data-i18n="templatePreviewTitle">Studio Professionale</h4>
+                        <p class="text-gray-600 dark:text-gray-300" data-i18n="templatePreviewDesc">Design moderno per avvocati, architetti e altri professionisti con sezione documenti integrata.</p>
+                    </div>
+                    <button class="px-6 py-3 bg-primary hover:bg-blue-600 text-white font-semibold rounded-lg shadow-md transition-colors duration-300 whitespace-nowrap" data-i18n="customizeBtn">
+                        Personalizza questo template
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dark Mode Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const themeLabel = document.getElementById('theme-label');
+        const html = document.documentElement;
+        
+        // Check for saved user preference, if any
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+            themeIcon.classList.replace('fa-sun', 'fa-moon');
+            themeLabel.textContent = 'Notte';
+        } else {
+            html.classList.remove('dark');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+            themeLabel.textContent = 'Giorno';
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            // Toggle icon and label
+            if (themeIcon.classList.contains('fa-moon')) {
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                themeLabel.textContent = 'Giorno';
+                html.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                themeLabel.textContent = 'Notte';
+                html.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        });
+        
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Template Filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const styleButtons = document.querySelectorAll('.style-btn');
+        const colorButtons = document.querySelectorAll('.color-btn');
+        const templateCards = document.querySelectorAll('.template-card');
+        
+        let currentFilter = 'all';
+        let currentStyle = 'all';
+        let currentColor = 'all';
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active state
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('bg-primary', 'text-white');
+                    btn.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-gray-300');
+                });
+                
+                button.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-gray-300');
+                button.classList.add('bg-primary', 'text-white');
+                
+                // Update filter
+                currentFilter = button.dataset.filter;
+                filterTemplates();
+            });
+        });
+        
+        styleButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active state
+                styleButtons.forEach(btn => {
+                    btn.classList.remove('bg-primary', 'text-white');
+                    btn.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-gray-300');
+                });
+                
+                if (button.dataset.style !== 'all') {
+                    button.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-gray-300');
+                    button.classList.add('bg-primary', 'text-white');
+                }
+                
+                // Update style
+                currentStyle = button.dataset.style;
+                filterTemplates();
+            });
+        });
+        
+        colorButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active state
+                colorButtons.forEach(btn => {
+                    btn.classList.remove('ring-2', 'ring-offset-2', 'ring-primary');
+                });
+                
+                if (button.dataset.color !== 'all') {
+                    button.classList.add('ring-2', 'ring-offset-2', 'ring-primary');
+                }
+                
+                // Update color
+                currentColor = button.dataset.color;
+                filterTemplates();
+            });
+        });
+        
+        function filterTemplates() {
+            templateCards.forEach(card => {
+                const categoryMatch = currentFilter === 'all' || card.dataset.category === currentFilter;
+                const styleMatch = currentStyle === 'all' || card.dataset.style === currentStyle;
+                const colorMatch = currentColor === 'all' || card.dataset.color === currentColor;
+                
+                if (categoryMatch && styleMatch && colorMatch) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+        
+        // Template Preview Modal
+        const previewButtons = document.querySelectorAll('.preview-btn');
+        const previewModal = document.getElementById('preview-modal');
+        const closeModal = document.getElementById('close-modal');
+        
+        previewButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                previewModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        closeModal.addEventListener('click', () => {
+            previewModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close modal when clicking outside
+        previewModal.addEventListener('click', (e) => {
+            if (e.target === previewModal) {
+                previewModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Form submission
+        const contactForm = document.querySelector('.contact-form');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Here you would typically send the form data to a server
+            alert('Grazie per il tuo messaggio! Ti risponderemo al più presto.');
+            contactForm.reset();
+        });
+        
+        // Language Translation
+        const translations = {
+            it: {
+                home: "Home",
+                services: "Servizi",
+                about: "Chi Siamo",
+                gallery: "Galleria",
+                contact: "Contatti",
+                heroTitle: "Il tuo business online con stile",
+                heroText: "Ottieni la visibilità che meriti. Creiamo siti web professionali e ottimizzati, la soluzione rapida e semplice per espandere la tua clientela e consolidare la tua immagine online.",
+                chooseTemplateBtn: "Scegli il tuo template",
+                contactUsBtn: "Contattaci",
+                servicesTitle: "I nostri servizi",
+                servicesSubtitle: "Tutto ciò di cui hai bisogno per avere una presenza online professionale",
+                service1Title: "Il tuo sito web su misura",
+                service1Desc: "Creiamo il tuo sito web su misura per il tuo business, ottimizzato per dispositivi mobili e motori di ricerca. Semplice, snello, senza backend o complicati e costosi pannelli da mantenere.",
+                aboutTitle: "Chi siamo",
+                aboutDesc1: "Siamo un team di professionisti appassionati di tecnologia e design, dedicati a creare soluzioni web che aiutano le piccole imprese e i professionisti a crescere online.",
+                aboutDesc2: "Con oltre 10 anni di esperienza nel settore, abbiamo aiutato centinaia di clienti a costruire la loro presenza digitale con siti web belli, funzionali e facili da gestire.",
+                aboutExp: "Esperienza decennale",
+                aboutSupport: "Supporto continuo",
+                aboutDesign: "Design personalizzato",
+                aboutTech: "Tecnologie moderne",
+                galleryTitle: "Scegli il tuo template",
+                gallerySubtitle: "Seleziona tra i nostri template professionali e personalizzalo per il tuo business",
+                allBtn: "Tutti",
+                shopBtn: "Negozi",
+                professionalBtn: "Professionisti",
+                restaurantBtn: "Ristoranti",
+                medicalBtn: "Medici",
+                allStylesBtn: "Tutti gli stili",
+                minimalBtn: "Minimal",
+                classicBtn: "Classico",
+                modernBtn: "Moderno",
+                elegantBtn: "Elegante",
+                contactTitle: "Contattaci",
+                contactSubtitle: "Compila il form per richiedere informazioni o un preventivo personalizzato",
+                nameLabel: "Nome e Cognome",
+                emailLabel: "Email",
+                phoneLabel: "Telefono",
+                messageLabel: "Messaggio",
+                privacyPolicyLabel: "Acconsento al trattamento dei miei dati personali secondo la Privacy Policy",
+                sendMessageBtn: "Invia messaggio",
+                contactInfoTitle: "Informazioni di contatto",
+                addressTitle: "Indirizzo",
+                addressDesc: "Via Roma 123, 00100 Roma, Italia",
+                phoneTitle: "Telefono",
+                phoneDesc: "+39 3209044901",
+                phoneHours: "Lun-Ven: 9:00-22:00",
+                emailTitle: "Email",
+                emailDesc: "info@businesswebsite.it",
+                emailResponse: "Rispondiamo entro 24 ore",
+                socialMediaTitle: "Social Media",
+                openingHoursTitle: "Orari di apertura",
+                mondayFridayHours: "9:00 - 22:00",
+                saturdayHours: "9:00 - 22:00",
+                sundayHours: "Chiuso",
+                mondayFriday: "Lunedì - Venerdì",
+                saturday: "Sabato",
+                sunday: "Domenica",
+                themeLabelNight: "Notte",
+                themeLabelDay: "Giorno",
+                // ...aggiungi qui altre chiavi se necessario...
+            },
+            en: {
+                home: "Home",
+                services: "Services",
+                about: "About Us",
+                gallery: "Gallery",
+                contact: "Contact",
+                heroTitle: "Your business online with style",
+                heroText: "Get the visibility you deserve. We create professional and optimized websites, the quick and easy solution to expand your clientele and strengthen your online image.",
+                chooseTemplateBtn: "Choose your template",
+                contactUsBtn: "Contact us",
+                servicesTitle: "Our Services",
+                servicesSubtitle: "Everything you need for a professional online presence",
+                service1Title: "Your custom website",
+                service1Desc: "We create your custom website for your business, optimized for mobile devices and search engines. Simple, streamlined, with no backend or complicated and expensive panels to maintain.",
+                aboutTitle: "About Us",
+                aboutDesc1: "We are a team of professionals passionate about technology and design, dedicated to creating web solutions that help small businesses and professionals grow online.",
+                aboutDesc2: "With over 10 years of experience, we have helped hundreds of clients build their digital presence with beautiful, functional, and easy-to-manage websites.",
+                aboutExp: "Decade of experience",
+                aboutSupport: "Continuous support",
+                aboutDesign: "Custom design",
+                aboutTech: "Modern technologies",
+                galleryTitle: "Choose your template",
+                gallerySubtitle: "Select from our professional templates and customize it for your business",
+                allBtn: "All",
+                shopBtn: "Shops",
+                professionalBtn: "Professionals",
+                restaurantBtn: "Restaurants",
+                medicalBtn: "Doctors",
+                allStylesBtn: "All styles",
+                minimalBtn: "Minimal",
+                classicBtn: "Classic",
+                modernBtn: "Moderno",
+                elegantBtn: "Elegant",
+                contactTitle: "Contact us",
+                contactSubtitle: "Fill out the form to request information or a personalized quote",
+                nameLabel: "Full Name",
+                emailLabel: "Email",
+                phoneLabel: "Phone",
+                messageLabel: "Message",
+                privacyPolicyLabel: "I consent to the processing of my personal data according to the Privacy Policy",
+                sendMessageBtn: "Send message",
+                contactInfoTitle: "Contact Information",
+                addressTitle: "Address",
+                addressDesc: "Via Roma 123, 00100 Rome, Italy",
+                phoneTitle: "Phone",
+                phoneDesc: "+39 3209044901",
+                phoneHours: "Mon-Fri: 9:00-22:00",
+                emailTitle: "Email",
+                emailDesc: "info@businesswebsite.it",
+                emailResponse: "We reply within 24 hours",
+                socialMediaTitle: "Social Media",
+                openingHoursTitle: "Opening Hours",
+                mondayFridayHours: "9:00 - 22:00",
+                saturdayHours: "9:00 - 22:00",
+                sundayHours: "Closed",
+                mondayFriday: "Monday - Friday",
+                saturday: "Saturday",
+                sunday: "Sunday",
+                themeLabelNight: "Night",
+                themeLabelDay: "Day",
+                // ...add more keys as needed...
+            },
+            sl: {
+                home: "Domov",
+                services: "Storitve",
+                about: "O nas",
+                gallery: "Galerija",
+                contact: "Kontakt",
+                heroTitle: "Vaše podjetje na spletu s stilom",
+                heroText: "Pridobite si vidnost, ki si jo zaslužite. Ustvarjamo profesionalne in optimizirane spletne strani, hitro in enostavno rešitev za širitev vaše baze strank in krepitev vaše spletne podobe.",
+                chooseTemplateBtn: "Izberite svojo predlogo",
+                contactUsBtn: "Kontaktirajte nas",
+                servicesTitle: "Naše storitve",
+                servicesSubtitle: "Vse, kar potrebujete za profesionalno spletno prisotnost",
+                service1Title: "Vaša spletna stran po meri",
+                service1Desc: "Ustvarimo vašo spletno stran po meri za vaše podjetje, optimizirano za mobilne naprave in iskalnike. Preprosto, hitro, brez backend sistema ali zapletenih in dragih nadzornih plošč za vzdrževanje.",
+                aboutTitle: "O nas",
+                aboutDesc1: "Smo ekipa strokovnjakov, navdušenih nad tehnologijo in oblikovanjem, posvečeni ustvarjanju spletnih rešitev, ki pomagajo malim podjetjem in strokovnjakom rasti na spletu.",
+                aboutDesc2: "Z več kot 10-letnimi izkušnjami smo pomagali stotinam strank zgraditi svojo digitalno prisotnost s čudovitimi, funkcionalnimi in enostavnimi spletnimi stranmi.",
+                aboutExp: "Desetletje izkušenj",
+                aboutSupport: "Neprekinjena podpora",
+                aboutDesign: "Personalizirano oblikovanje",
+                aboutTech: "Sodobne tehnologije",
+                galleryTitle: "Izberite svojo predlogo",
+                gallerySubtitle: "Izberite med našimi profesionalnimi predlogami in jih prilagodite svojemu podjetju",
+                allBtn: "Vse",
+                shopBtn: "Trgovine",
+                professionalBtn: "Strokovnjaki",
+                restaurantBtn: "Restavracije",
+                medicalBtn: "Zdravniki",
+                allStylesBtn: "Vsi slogi",
+                minimalBtn: "Minimalno",
+                classicBtn: "Klasično",
+                modernBtn: "Sodobno",
+                elegantBtn: "Elegantno",
+                contactTitle: "Kontakt",
+                contactSubtitle: "Izpolnite obrazec za informacije ali ponudbo po meri",
+                nameLabel: "Ime in priimek",
+                emailLabel: "Email",
+                phoneLabel: "Telefon",
+                messageLabel: "Sporočilo",
+                privacyPolicyLabel: "Soglašam z obdelavo osebnih podatkov v skladu s politiko zasebnosti",
+                sendMessageBtn: "Pošlji sporočilo",
+                contactInfoTitle: "Kontaktni podatki",
+                addressTitle: "Naslov",
+                addressDesc: "Via Roma 123, 00100 Rim, Italija",
+                phoneTitle: "Telefon",
+                phoneDesc: "+39 3209044901",
+                phoneHours: "Pon-Pet: 9:00-22:00",
+                emailTitle: "Email",
+                emailDesc: "info@businesswebsite.it",
+                emailResponse: "Odgovorimo v 24 urah",
+                socialMediaTitle: "Družbena omrežja",
+                openingHoursTitle: "Odpiralni čas",
+                mondayFridayHours: "9:00 - 22:00",
+                saturdayHours: "9:00 - 22:00",
+                sundayHours: "Zaprto",
+                mondayFriday: "Ponedeljek - Petek",
+                saturday: "Sobota",
+                sunday: "Nedelja",
+                themeLabelNight: "Noč",
+                themeLabelDay: "Dan",
+                // ...dodaj še ostale ključe po potrebi...
+            }
+        };
+
+        const languageSelect = document.getElementById('language-select');
+        languageSelect.addEventListener('change', (e) => {
+            const lang = e.target.value;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+            // Per i placeholder degli input
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (translations[lang][key]) {
+                    el.placeholder = translations[lang][key];
+                }
+            });
+        });
+
+        function updateThemeLabel() {
+            const lang = languageSelect.value;
+            if (html.classList.contains('dark')) {
+                themeLabel.textContent = translations[lang].themeLabelNight;
+            } else {
+                themeLabel.textContent = translations[lang].themeLabelDay;
+            }
+        }
+
+        // Aggiorna la label al cambio tema
+        themeToggle.addEventListener('click', () => {
+            // ...già presente...
+            updateThemeLabel();
+        });
+
+        // Aggiorna la label al cambio lingua
+        languageSelect.addEventListener('change', (e) => {
+            // ...già presente...
+            updateThemeLabel();
+        });
+
+        // Aggiorna la label all’avvio
+        updateThemeLabel();
+    </script>
+</body>
+</html>
