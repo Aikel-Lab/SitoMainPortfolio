@@ -1,0 +1,2727 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Pacchetti Siti Web - Heykel Bejaoui</title>
+    <meta name="description" content="Soluzioni professionali per psicologi, studi medici e formatori. Scegli il pacchetto più adatto alle tue esigenze.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Dark mode styles */
+        .dark {
+            color-scheme: dark;
+        }
+        
+        /* Star border animation identica ai price box */
+        .star-border {
+            position: relative;
+            display: inline-block;
+            border-radius: 20px;
+            overflow: hidden;
+            padding: 3px;
+            width: 100%;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+        }
+        
+        .star-border::before {
+            content: '';
+            position: absolute;
+            width: 400%;
+            height: 80%;
+            opacity: 0.95;
+            bottom: -25px;
+            right: -350%;
+            border-radius: 50%;
+            animation: star-movement-bottom 5s linear infinite;
+            z-index: 0;
+            filter: blur(2px);
+        }
+        
+        .star-border::after {
+            content: '';
+            position: absolute;
+            opacity: 0.95;
+            width: 400%;
+            height: 80%;
+            top: -25px;
+            left: -350%;
+            border-radius: 50%;
+            animation: star-movement-top 5s linear infinite;
+            z-index: 0;
+            filter: blur(2px);
+        }
+        
+        .star-border-content {
+            position: relative;
+            background: white;
+            border-radius: 17px;
+            z-index: 1;
+            padding: 1.25rem;
+            height: 100%;
+        }
+        
+        .dark .star-border-content {
+            background: #374155;
+        }
+        
+        /* Colori specifici per pacchetto Essenziale nei contenitori */
+        .essenziale.star-border::before,
+        .essenziale.star-border::after {
+            background: radial-gradient(circle, #f59e0b 0%, #d97706 25%, #f59e0b 40%, transparent 65%);
+            box-shadow: 0 0 25px #f59e0b, 0 0 50px rgba(245, 158, 11, 0.7);
+        }
+        
+        /* Colori specifici per pacchetto Professionale nei contenitori */
+        .professionale.star-border::before,
+        .professionale.star-border::after {
+            background: radial-gradient(circle, #10b981 0%, #059669 25%, #10b981 40%, transparent 65%);
+            box-shadow: 0 0 25px #10b981, 0 0 50px rgba(16, 185, 129, 0.7);
+        }
+        
+        /* Colori specifici per pacchetto Continuativo nei contenitori */
+        .continuativo.star-border::before,
+        .continuativo.star-border::after {
+            background: radial-gradient(circle, #3b82f6 0%, #2563eb 25%, #3b82f6 40%, transparent 65%);
+            box-shadow: 0 0 25px #3b82f6, 0 0 50px rgba(59, 130, 246, 0.7);
+        }
+        
+        /* Continuativo card special animation */
+        @keyframes multicolor-border {
+            0% { border-color: #f59e0b; box-shadow: 0 0 20px rgba(245, 158, 11, 0.5); }
+            25% { border-color: #10b981; box-shadow: 0 0 20px rgba(16, 185, 129, 0.5); }
+            50% { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
+            75% { border-color: #8b5cf6; box-shadow: 0 0 20px rgba(139, 92, 246, 0.5); }
+            100% { border-color: #f59e0b; box-shadow: 0 0 20px rgba(245, 158, 11, 0.5); }
+        }
+        
+        .continuativo-border {
+            animation: multicolor-border 3s ease-in-out infinite;
+            border-width: 3px;
+            border-style: solid;
+        }
+        
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .floating:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Hover generale per tutte le tier star-border */
+        .star-border:hover {
+            transform: translateY(-12px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Effetto breathing fisso per il pacchetto Continuativo */
+        .continuativo.floating {
+            animation: float 6s ease-in-out infinite, breathing-glow 3s ease-in-out infinite;
+        }
+        
+        /* Effetto breathing anche per la tier box grande del Continuativo */
+        .grid .continuativo.star-border {
+            animation: float 6s ease-in-out infinite, breathing-glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes breathing-glow {
+            0% {
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06), 0 0 0 0 rgba(59, 130, 246, 0.2);
+            }
+            50% {
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06), 0 0 30px 5px rgba(59, 130, 246, 0.15);
+            }
+            100% {
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06), 0 0 0 0 rgba(59, 130, 246, 0.2);
+            }
+        }
+        
+        /* Effetti hover specifici per tier con glow colorati */
+        .essenziale.floating:hover {
+            transform: translateY(-12px);
+            box-shadow: 
+                0 25px 50px rgba(245, 158, 11, 0.25), 
+                0 10px 20px rgba(245, 158, 11, 0.15),
+                0 0 40px rgba(245, 158, 11, 0.2);
+        }
+        
+        /* Hover per tier essenziale anche senza floating */
+        .essenziale.star-border:hover {
+            transform: translateY(-12px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 
+                0 25px 50px rgba(245, 158, 11, 0.25), 
+                0 10px 20px rgba(245, 158, 11, 0.15),
+                0 0 40px rgba(245, 158, 11, 0.2);
+        }
+        
+        .professionale.floating:hover {
+            transform: translateY(-12px);
+            box-shadow: 
+                0 25px 50px rgba(16, 185, 129, 0.25), 
+                0 10px 20px rgba(16, 185, 129, 0.15),
+                0 0 40px rgba(16, 185, 129, 0.2);
+        }
+        
+        /* Hover per tier professionale anche senza floating */
+        .professionale.star-border:hover {
+            transform: translateY(-12px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 
+                0 25px 50px rgba(16, 185, 129, 0.25), 
+                0 10px 20px rgba(16, 185, 129, 0.15),
+                0 0 40px rgba(16, 185, 129, 0.2);
+        }
+        
+        .continuativo.floating:hover {
+            transform: translateY(-12px);
+            animation: float 6s ease-in-out infinite, breathing-glow-hover 2s ease-in-out infinite;
+            box-shadow: 
+                0 25px 50px rgba(59, 130, 246, 0.3), 
+                0 10px 20px rgba(59, 130, 246, 0.2),
+                0 0 40px rgba(59, 130, 246, 0.25);
+        }
+        
+        /* Effetto hover breathing anche per la tier box grande del Continuativo */
+        .grid .continuativo.star-border:hover {
+            transform: translateY(-12px);
+            animation: float 6s ease-in-out infinite, breathing-glow-hover 2s ease-in-out infinite;
+            box-shadow: 
+                0 25px 50px rgba(59, 130, 246, 0.3), 
+                0 10px 20px rgba(59, 130, 246, 0.2),
+                0 0 40px rgba(59, 130, 246, 0.25);
+        }
+        
+        @keyframes breathing-glow-hover {
+            0% {
+                box-shadow: 
+                    0 25px 50px rgba(59, 130, 246, 0.3), 
+                    0 10px 20px rgba(59, 130, 246, 0.2),
+                    0 0 40px rgba(59, 130, 246, 0.25);
+            }
+            50% {
+                box-shadow: 
+                    0 25px 50px rgba(59, 130, 246, 0.4), 
+                    0 10px 20px rgba(59, 130, 246, 0.3),
+                    0 0 50px rgba(59, 130, 246, 0.35);
+            }
+            100% {
+                box-shadow: 
+                    0 25px 50px rgba(59, 130, 246, 0.3), 
+                    0 10px 20px rgba(59, 130, 246, 0.2),
+                    0 0 40px rgba(59, 130, 246, 0.25);
+            }
+        }
+        
+        /* Enhanced WhatsApp button with breathing effect */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            background-color: #10B981;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+            z-index: 50;
+            transition: background 0.3s, box-shadow 0.3s;
+            animation: breathing-shadow 4s cubic-bezier(.4,0,.2,1) infinite;
+        }
+        
+        @keyframes breathing-shadow {
+            0%   { box-shadow: 0 0 0 0 rgba(16,185,129,0.25), 0 4px 16px rgba(0,0,0,0.18);}
+            50%  { box-shadow: 0 0 0 18px rgba(16,185,129,0.10), 0 4px 24px rgba(0,0,0,0.20);}
+            100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.25), 0 4px 16px rgba(0,0,0,0.18);}
+        }
+        
+        .whatsapp-button:hover {
+            background-color: #059669;
+            box-shadow: 0 0 0 10px rgba(16,185,129,0.13), 0 8px 24px rgba(0,0,0,0.22);
+        }
+        
+        /* Enhanced price cards */
+        .price-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            transition: all 0.3s ease;
+        }
+        
+        .dark .price-card {
+            background: #334155;
+            border-color: rgba(71, 85, 105, 0.4);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .price-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3B82F6, #10B981);
+            border-radius: 16px 16px 0 0;
+        }
+        
+        /* Enhanced price boxes con animazione star-border */
+        .price-box {
+            background: linear-gradient(135deg, rgba(133, 77, 14, 0.08), rgba(161, 98, 7, 0.05));
+            border: 1px solid rgba(161, 98, 7, 0.25);
+            border-radius: 16px;
+            padding: 6px 12px;
+            margin-bottom: 12px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(161, 98, 7, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .price-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(161, 98, 7, 0.15);
+        }
+        
+        .price-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #854d0e, #a16207, #ca8a04);
+        }
+        
+        .dark .price-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(37, 99, 235, 0.08));
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+        }
+        
+        .dark .price-box:hover {
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
+        }
+        
+        .dark .price-box::before {
+            background: linear-gradient(90deg, #1e40af, #3b82f6, #60a5fa);
+        }
+
+        /* Price box con animazione star-border identica a ShopSiti.html */
+        .price-box-star-border {
+            position: relative;
+            display: inline-block;
+            border-radius: 20px;
+            overflow: hidden;
+            padding: 3px;
+            width: 280px;
+            min-height: 120px;
+            margin: 0 auto; /* Centra la price box */
+        }
+        
+        .price-box-star-border::before {
+            content: '';
+            position: absolute;
+            width: 400%;
+            height: 80%;
+            opacity: 0.95;
+            bottom: -25px;
+            right: -350%;
+            border-radius: 50%;
+            animation: star-movement-bottom 5s linear infinite;
+            z-index: 0;
+            filter: blur(2px);
+        }
+        
+        .price-box-star-border::after {
+            content: '';
+            position: absolute;
+            opacity: 0.95;
+            width: 400%;
+            height: 80%;
+            top: -25px;
+            left: -350%;
+            border-radius: 50%;
+            animation: star-movement-top 5s linear infinite;
+            z-index: 0;
+            filter: blur(2px);
+        }
+        
+        /* Colori specifici per pacchetto Essenziale (arancione) */
+        .essenziale .price-box-star-border::before,
+        .essenziale .price-box-star-border::after {
+            background: radial-gradient(circle, #f59e0b 0%, #d97706 25%, #f59e0b 40%, transparent 65%);
+            box-shadow: 0 0 25px #f59e0b, 0 0 50px rgba(245, 158, 11, 0.7);
+        }
+        
+        /* Colori specifici per pacchetto Professionale (verde) */
+        .professionale .price-box-star-border::before,
+        .professionale .price-box-star-border::after {
+            background: radial-gradient(circle, #10b981 0%, #059669 25%, #10b981 40%, transparent 65%);
+            box-shadow: 0 0 25px #10b981, 0 0 50px rgba(16, 185, 129, 0.7);
+        }
+        
+        /* Colori specifici per pacchetto Continuativo (blu) */
+        .continuativo .price-box-star-border::before,
+        .continuativo .price-box-star-border::after {
+            background: radial-gradient(circle, #3b82f6 0%, #2563eb 25%, #3b82f6 40%, transparent 65%);
+            box-shadow: 0 0 25px #3b82f6, 0 0 50px rgba(59, 130, 246, 0.7);
+        }
+        
+        .price-box-inner {
+            position: relative;
+            background: linear-gradient(to bottom, #1e293b, #334155);
+            border: 2px solid #475569;
+            color: white;
+            text-align: center;
+            padding: 16px 26px;
+            border-radius: 17px;
+            z-index: 1;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            min-height: 114px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        /* Dark mode adjustments */
+        .dark .price-box-inner {
+            background: linear-gradient(to bottom, #0f172a, #1e293b);
+            border-color: #334155;
+        }
+        
+        /* Animazioni StarBorder unidirezionali */
+        @keyframes star-movement-bottom {
+            0% {
+                transform: translate(100%, 0%);
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-100%, 0%);
+                opacity: 0.3;
+            }
+        }
+        
+        @keyframes star-movement-top {
+            0% {
+                transform: translate(-100%, 0%);
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(100%, 0%);
+                opacity: 0.3;
+            }
+        }
+
+        /* Price styling */
+        .price-main {
+            position: relative;
+            font-size: 2.75rem;
+            font-weight: 900;
+            line-height: 0.85;
+            margin-bottom: 3px;
+            letter-spacing: -0.02em;
+        }
+        
+        /* Superficie/base sotto il prezzo principale */
+        .price-main::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(161, 98, 7, 0.8), transparent);
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(161, 98, 7, 0.3);
+        }
+        
+        .dark .price-main::after {
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.8), transparent);
+            box-shadow: 0 1px 3px rgba(59, 130, 246, 0.3);
+        }
+        
+        .price-subtitle {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .dark .price-subtitle {
+            color: #9ca3af;
+        }
+        
+        .price-description {
+            font-size: 0.8rem;
+            color: #6b7280;
+            font-weight: 500;
+            text-transform: capitalize;
+        }
+        
+        .dark .price-description {
+            color: #9ca3af;
+        }
+        
+        /* Definizione generale price-highlight */
+        .price-highlight {
+            background: linear-gradient(
+                to left,
+                #ff8a00,
+                #e52e71,
+                #4f46e5,
+                #ff8a00,
+                #e52e71
+            );
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            text-shadow: none;
+            animation: gradient-text 6s ease infinite;
+            font-weight: 700;
+        }
+        
+        @keyframes gradient-text {
+            0% { background-position: 300% center; }
+            50% { background-position: 150% center; }
+            100% { background-position: 0% center; }
+        }
+        
+        .price-highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(
+                to left,
+                transparent,
+                #ff8a00,
+                #e52e71,
+                #4f46e5,
+                #ff8a00,
+                transparent
+            );
+            background-size: 200% auto;
+            animation: gradient-line 6s ease infinite;
+            opacity: 0.8;
+            border-radius: 2px;
+        }
+        
+        @keyframes gradient-line {
+            0% { background-position: 200% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+        
+        /* Fix per i colori professionali specifici per pacchetto */
+        .essenziale .price-highlight {
+            background: linear-gradient(
+                to left,
+                #f59e0b,
+                #d97706,
+                #b45309,
+                #f59e0b,
+                #d97706
+            );
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-text 6s ease infinite;
+            font-weight: 700;
+        }
+        
+        .professionale .price-highlight {
+            background: linear-gradient(
+                to left,
+                #10b981,
+                #059669,
+                #047857,
+                #10b981,
+                #059669
+            );
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-text 6s ease infinite;
+            font-weight: 700;
+        }
+        
+        .continuativo .price-highlight {
+            background: linear-gradient(
+                to left,
+                #3b82f6,
+                #2563eb,
+                #1e40af,
+                #3b82f6,
+                #2563eb
+            );
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-text 6s ease infinite;
+            font-weight: 700;
+        }
+        
+        /* Enhanced card hover effects */
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        /* Fade in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        /* PayPal button styling */
+        .paypal-btn {
+            background: linear-gradient(135deg, #0070ba, #003087);
+            transition: all 0.3s ease;
+        }
+        
+        .paypal-btn:hover {
+            background: linear-gradient(135deg, #005ea6, #002a75);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 112, 186, 0.3);
+        }
+        
+        /* WhatsApp button styling */
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-btn:hover {
+            background: linear-gradient(135deg, #22c55e, #16a085);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+        }
+        
+        /* Back to top button - identico a ShopSiti.html */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            width: 52px;
+            height: 52px;
+            font-size: 1.4rem;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+            animation: up-move 3.5s infinite alternate cubic-bezier(.4,0,.2,1);
+            pointer-events: none;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+        
+        .back-to-top.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(30px);
+        }
+        
+        @keyframes up-move {
+            0% { transform: translateY(0);}
+            100% { transform: translateY(-10px);}
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+        }
+        
+        /* Cookie Banner Styles */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #1f2937, #374151);
+            border-top: 3px solid #10B981;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+            z-index: 40;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .cookie-banner.show {
+            transform: translateY(0);
+        }
+        
+        .cookie-btn-accept {
+            background: linear-gradient(135deg, #10B981, #059669);
+            color: white;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            transition: all 0.3s ease;
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .cookie-btn-accept:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+        }
+        
+        .cookie-btn-settings {
+            background: rgba(148, 163, 184, 0.1);
+            color: #94a3b8;
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            transition: all 0.3s ease;
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .cookie-btn-settings:hover {
+            background: rgba(148, 163, 184, 0.2);
+            color: #cbd5e1;
+        }
+        
+        /* Modal styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .dark .modal-content {
+            background: #1f2937;
+            color: white;
+        }
+        
+        /* Cookie toggle */
+        .cookie-toggle {
+            position: relative;
+            width: 48px;
+            height: 24px;
+            background: #cbd5e1;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .cookie-toggle.active {
+            background: #10B981;
+        }
+        
+        .cookie-toggle::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cookie-toggle.active::after {
+            transform: translateX(24px);
+        }
+        
+        /* Toggle switch */
+        .toggle {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: #3b82f6;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        
+        /* Mobile spacing to avoid floating buttons overlap */
+        @media (max-width: 768px) {
+            body {
+                padding-bottom: 100px;
+            }
+            
+            .container {
+                margin-bottom: 0;
+            }
+            
+            /* Adjust footer spacing on mobile */
+            footer {
+                padding-bottom: 2rem;
+            }
+            
+            /* Ensure sections have enough bottom spacing */
+            section:last-of-type {
+                margin-bottom: 1rem;
+            }
+        }
+        
+        /* Mobile spacing to avoid floating buttons covering content */
+        @media (max-width: 768px) {
+            body {
+                padding-bottom: 100px;
+            }
+            
+            .container {
+                padding-bottom: 2rem;
+            }
+            
+            section:last-child {
+                padding-bottom: 3rem;
+            }
+        }
+        
+        /* Animated Gradient Text Effect - Optimized motion */
+        .gradient-text {
+            background: linear-gradient(
+                270deg,
+                #3b82f6,
+                #8b5cf6,
+                #ec4899,
+                #ef4444,
+                #f59e0b,
+                #10b981,
+                #06b6d4,
+                #3b82f6
+            );
+            background-size: 1000% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-flow 30s ease-in-out infinite;
+        }
+        
+        @keyframes gradient-flow {
+            0% {
+                background-position: 1000% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        /* Dark mode gradient text - same effect with brighter colors */
+        .dark .gradient-text {
+            background: linear-gradient(
+                270deg,
+                #60a5fa,
+                #a78bfa,
+                #f472b6,
+                #fb7185,
+                #fbbf24,
+                #34d399,
+                #22d3ee,
+                #60a5fa
+            );
+            background-size: 1000% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-flow 30s ease-in-out infinite;
+        }
+        
+        /* Reduce motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .gradient-text {
+                animation: none;
+                background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            
+            .dark .gradient-text {
+                background: linear-gradient(90deg, #60a5fa, #a78bfa);
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+        
+        /* Enhanced Dark Mode Support - Maximum contrast and readability */
+        .dark {
+            background-color: #111827 !important;
+            color: #f9fafb !important;
+        }
+        
+        .dark body {
+            background-color: #111827 !important;
+            color: #f9fafb !important;
+        }
+        
+        .dark .star-border-content {
+            background: #1f2937 !important;
+            color: #f9fafb !important;
+        }
+        
+        .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+            color: #ffffff !important;
+        }
+        
+        .dark p, .dark span, .dark div {
+            color: #e5e7eb !important;
+        }
+        
+        .dark .text-gray-300 {
+            color: #ffffff !important; /* Cambiato da #d1d5db a bianco puro */
+        }
+        
+        .dark .text-gray-400 {
+            color: #9ca3af !important;
+        }
+        
+        .dark .text-gray-500 {
+            color: #9ca3af !important;
+        }
+        
+        .dark .text-gray-600 {
+            color: #d1d5db !important;
+        }
+        
+        .dark .text-gray-700 {
+            color: #e5e7eb !important;
+        }
+        
+        .dark .text-gray-900 {
+            color: #ffffff !important;
+        }
+        
+        /* Navigation dark mode fixes */
+        .dark nav {
+            background-color: rgba(15, 23, 42, 0.95) !important;
+            border-color: #475569 !important;
+        }
+        
+        /* Hero section dark mode */
+        .dark .bg-gradient-to-br {
+            background: linear-gradient(to bottom right, #111827, #1e293b) !important;
+        }
+        
+        /* Sections dark mode */
+        .dark section {
+            background-color: #111827 !important;
+        }
+        
+        .dark .bg-white {
+            background-color: #111827 !important;
+        }
+        
+        .dark .bg-gray-50 {
+            background-color: #1f2937 !important;
+        }
+        
+        .dark .bg-gray-800 {
+            background-color: #111827 !important;
+        }
+        
+        /* Card backgrounds in dark mode */
+        .dark .bg-gray-700 {
+            background-color: #1f2937 !important;
+            color: #ffffff !important;
+        }
+        
+        /* Footer in dark mode */
+        .dark footer {
+            background-color: #0f172a !important;
+        }
+        
+        /* Ensure footer title (Heykel Bejaoui) is white in both themes */
+        footer h3.text-2xl {
+            color: #ffffff !important;
+        }
+        
+        /* Ensure CTA and Footer elements have consistent colors in both themes */
+        .py-16.bg-gradient-to-r h2,
+        .py-16.bg-gradient-to-r p,
+        footer p,
+        footer .fas,
+        footer .fab {
+            color: #ffffff !important;
+        }
+        
+        .py-16.bg-gradient-to-r p.text-black {
+            color: #000000 !important;
+        }
+        
+        /* Price box styling fix - garantisce che tutti i testi nei price box siano bianchi */
+        .price-box-inner,
+        .price-box-inner *,
+        .price-main,
+        .price-subtitle,
+        .price-description {
+            color: white !important;
+        }
+        
+        /* Eccezioni per i colori personalizzati delle price box per ogni tier */
+        .essenziale .price-subtitle.text-amber-200 {
+            color: #fcd34d !important; /* amber-200 */
+        }
+        
+        .essenziale .price-main.text-amber-400 {
+            color: #fbbf24 !important; /* amber-400 */
+        }
+        
+        .essenziale .price-description.text-amber-100 {
+            color: #fef3c7 !important; /* amber-100 */
+        }
+        
+        .professionale .price-subtitle.text-emerald-200 {
+            color: #a7f3d0 !important; /* emerald-200 */
+        }
+        
+        .professionale .price-main.text-emerald-400 {
+            color: #34d399 !important; /* emerald-400 */
+        }
+        
+        .professionale .price-description.text-emerald-100 {
+            color: #d1fae5 !important; /* emerald-100 */
+        }
+        
+        .continuativo .price-subtitle.text-sky-200 {
+            color: #bae6fd !important; /* sky-200 */
+        }
+        
+        .continuativo .price-main.text-sky-400 {
+            color: #38bdf8 !important; /* sky-400 */
+        }
+        
+        .continuativo .price-description.text-sky-100 {
+            color: #e0f2fe !important; /* sky-100 */
+        }
+        
+        /* Ensure tier features are white in dark mode */
+        .dark .space-y-4 span,
+        .dark span.text-gray-700 {
+            color: #ffffff !important;
+        }
+        
+        /* Ensure all feature descriptions are white in dark mode */
+        .dark .flex.items-center.space-x-3 span {
+            color: #ffffff !important;
+        }
+        
+        /* Ensure span with strong inside is white in dark mode */
+        .dark span strong,
+        .dark .flex.items-center.space-x-3 span strong,
+        .dark .text-gray-700.dark\:text-white strong {
+            color: #ffffff !important;
+        }
+        
+        /* Specific override for tier features text */
+        .dark span.text-gray-700.dark\:text-gray-300 {
+            color: #ffffff !important;
+        }
+        
+        /* Ensure all package descriptions are white in dark mode */
+        .dark .star-border-content p {
+            color: #ffffff !important;
+        }
+        
+        /* Ensure all service descriptions are white in dark mode */
+        .dark .bg-white.dark\:bg-gray-700 p {
+            color: #ffffff !important;
+        }
+        
+        /* Force white text for all feature lists in professional package */
+        .dark .professionale .space-y-4 span,
+        .dark .professionale .flex.items-center.space-x-3 span {
+            color: #ffffff !important;
+        }
+        
+        /* Force white text for ALL strong tags in dark mode */
+        .dark .essenziale strong, 
+        .dark .professionale strong, 
+        .dark .continuativo strong,
+        .dark .space-y-4 strong,
+        .dark .flex.items-center.space-x-3 strong,
+        .dark span.text-gray-700 strong,
+        .dark .text-white strong {
+            color: #ffffff !important;
+        }
+        
+        /* Guarantee white text for specific feature items */
+        span.text-white, 
+        .dark span.text-white,
+        .dark .text-white {
+            color: #ffffff !important;
+        }
+        
+        /* Correzione colori per le descrizioni dei tier nel tema chiaro */
+        .star-border-content p.text-gray-600 {
+            color: #4b5563 !important; /* gray-600 - colore originale */
+        }
+        
+        /* Specifico per temi */
+        .dark .star-border-content p.text-gray-600.dark\:text-white {
+            color: #ffffff !important;
+        }
+        
+        /* Mantiene il colore originale per le feature dei tier nel tema chiaro */
+        .star-border-content .flex.items-center.space-x-3 span.text-gray-700 {
+            color: #374151 !important; /* gray-700 - colore originale */
+        }
+        
+        /* Enhanced Light Mode Support - Maximum contrast and readability */
+        body {
+            background-color: #ffffff !important;
+            color: #111827 !important;
+        }
+        
+        .star-border-content {
+            background: #ffffff !important;
+            color: #111827 !important;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #111827 !important;
+        }
+        
+        p, span, div {
+            color: #374151 !important;
+        }
+        
+        .text-gray-300 {
+            color: #6b7280 !important;
+        }
+        
+        .text-gray-400 {
+            color: #6b7280 !important;
+        }
+        
+        .text-gray-500 {
+            color: #6b7280 !important;
+        }
+        
+        .text-gray-600 {
+            color: #4b5563 !important;
+        }
+        
+        .text-gray-700 {
+            color: #374151 !important;
+        }
+        
+        .text-gray-900 {
+            color: #111827 !important;
+        }
+        
+        /* Navigation light mode fixes */
+        nav {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            border-color: #e5e7eb !important;
+        }
+        
+        /* Hero section light mode */
+        .bg-gradient-to-br {
+            background: linear-gradient(to bottom right, #f8fafc, #e2e8f0) !important;
+        }
+        
+        /* Sections light mode */
+        section {
+            background-color: #ffffff !important;
+        }
+        
+        .bg-white {
+            background-color: #ffffff !important;
+        }
+        
+        .bg-gray-50 {
+            background-color: #f9fafb !important;
+        }
+        
+        /* Card backgrounds in light mode */
+        .bg-gray-700 {
+            background-color: #ffffff !important;
+            color: #111827 !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+            border: 1px solid #e5e7eb !important;
+        }
+        
+        /* Price and feature text improvements */
+        .star-border-content span {
+            color: #374151 !important;
+        }
+        
+        .star-border-content strong {
+            color: #111827 !important;
+        }
+        
+        /* Ensure strong text is white in dark mode */
+        .dark .star-border-content strong,
+        .dark strong,
+        .dark span strong {
+            color: #ffffff !important;
+        }
+        
+        /* Ensure all buttons have good contrast */
+        .paypal-btn, .whatsapp-btn {
+            color: #ffffff !important;
+        }
+        
+        /* Price box text improvements */
+        .price-box-inner {
+            color: #ffffff !important;
+        }
+        
+        /* Ensure price box text is always white */
+        .price-box-inner * {
+            color: #ffffff !important;
+        }
+        
+        .price-subtitle,
+        .price-main,
+        .price-description {
+            color: #ffffff !important;
+        }
+        
+        .dark .price-subtitle,
+        .dark .price-main,
+        .dark .price-description {
+            color: #ffffff !important;
+        }
+        
+        /* Ensure tier features are white in dark mode */
+        .dark .space-y-4 span,
+        .dark span.text-gray-700 {
+            color: #ffffff !important;
+        }
+        
+        /* Ensure all feature descriptions are white in dark mode */
+        .dark .flex.items-center.space-x-3 span {
+            color: #ffffff !important;
+        }
+        
+        /* Ensure span with strong inside is white in dark mode */
+        .dark span strong,
+        .dark .flex.items-center.space-x-3 span strong,
+        .dark .text-gray-700.dark\:text-white strong {
+            color: #ffffff !important;
+        }
+        
+        /* Specific override for tier features text */
+        .dark span.text-gray-700.dark\:text-gray-300 {
+            color: #ffffff !important;
+        }
+        
+        /* Ensure all package descriptions are white in dark mode */
+        .dark .star-border-content p {
+            color: #ffffff !important;
+        }
+        
+        /* Ensure all service descriptions are white in dark mode */
+        .dark .bg-white.dark\:bg-gray-700 p {
+            color: #ffffff !important;
+        }
+        
+        /* Force white text for all feature lists in professional package */
+        .dark .professionale .space-y-4 span,
+        .dark .professionale .flex.items-center.space-x-3 span {
+            color: #ffffff !important;
+        }
+        
+        /* Force white text for ALL strong tags in dark mode */
+        .dark .essenziale strong, 
+        .dark .professionale strong, 
+        .dark .continuativo strong,
+        .dark .space-y-4 strong,
+        .dark .flex.items-center.space-x-3 strong,
+        .dark span.text-gray-700 strong,
+        .dark .text-white strong {
+            color: #ffffff !important;
+        }
+        
+        /* Guarantee white text for specific feature items */
+        span.text-white, 
+        .dark span.text-white,
+        .dark .text-white {
+            color: #ffffff !important;
+        }
+        
+        /* Correzione colori per le descrizioni dei tier nel tema chiaro */
+        .star-border-content p.text-gray-600 {
+            color: #4b5563 !important; /* gray-600 - colore originale */
+        }
+        
+        /* Specifico per temi */
+        .dark .star-border-content p.text-gray-600.dark\:text-white {
+            color: #ffffff !important;
+        }
+        
+        /* Mantiene il colore originale per le feature dei tier nel tema chiaro */
+        .star-border-content .flex.items-center.space-x-3 span.text-gray-700 {
+            color: #374151 !important; /* gray-700 - colore originale */
+        }
+        
+        /* Enhanced Light Mode Support - Maximum contrast and readability */
+        body {
+            background-color: #ffffff !important;
+            color: #111827 !important;
+        }
+        
+        .star-border-content {
+            background: #ffffff !important;
+            color: #111827 !important;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #111827 !important;
+        }
+        
+        p, span, div {
+            color: #374151 !important;
+        }
+        
+        .text-gray-300 {
+            color: #6b7280 !important;
+        }
+        
+        .text-gray-400 {
+            color: #6b7280 !important;
+        }
+        
+        .text-gray-500 {
+            color: #6b7280 !important;
+        }
+        
+        .text-gray-600 {
+            color: #4b5563 !important;
+        }
+        
+        .text-gray-700 {
+            color: #374151 !important;
+        }
+        
+        .text-gray-900 {
+            color: #111827 !important;
+        }
+        
+        /* Navigation light mode fixes */
+        nav {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            border-color: #e5e7eb !important;
+        }
+        
+        /* Hero section light mode */
+        .bg-gradient-to-br {
+            background: linear-gradient(to bottom right, #f8fafc, #e2e8f0) !important;
+        }
+        
+        /* Sections light mode */
+        section {
+            background-color: #ffffff !important;
+        }
+        
+        .bg-white {
+            background-color: #ffffff !important;
+        }
+        
+        .bg-gray-50 {
+            background-color: #f9fafb !important;
+        }
+        
+        /* Card backgrounds in light mode */
+        .bg-gray-700 {
+            background-color: #ffffff !important;
+            color: #111827 !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+            border: 1px solid #e5e7eb !important;
+        }
+        
+        /* Price and feature text improvements */
+        .star-border-content span {
+            color: #374151 !important;
+        }
+        
+        .star-border-content strong {
+            color: #111827 !important;
+        }
+        
+        /* Ensure strong text is white in dark mode */
+        .dark .star-border-content strong,
+        .dark strong,
+        .dark span strong {
+            color: #ffffff !important;
+        }
+        
+        /* Ensure all buttons have good contrast */
+        .paypal-btn, .whatsapp-btn {
+            color: #ffffff !important;
+        }
+        
+        /* Price box text improvements */
+        .price-box-inner {
+            color: #ffffff !important;
+        }
+        
+        /* Ensure price box text is always white */
+        .price-box-inner * {
+            color: #ffffff !important;
+        }
+        
+        .price-subtitle,
+        .price-main,
+        .price-description {
+            color: #ffffff !important;
+        }
+        
+        .dark .price-subtitle,
+        .dark .price-main,
+        .dark .price-description {
+            color: #ffffff !important;
+        }
+        
+        /* Ensure tier features are white in dark mode */
+        .dark .space-y-4 span,
+        .dark span.text-gray-700 {
+            color: #ffffff !important;
+        }
+        
+        /* Ensure all feature descriptions are white in dark mode */
+        .dark .flex.items-center.space-x-3 span {
+            color: #ffffff !important;
+        }
+        
+        /* Ensure span with strong inside is white in dark mode */
+        .dark span strong,
+        .dark .flex.items-center.space-x-3 span strong,
+        .dark .text-gray-700.dark\:text-white strong {
+            color: #ffffff !important;
+        }
+        
+        /* Specific override for tier features text */
+        .dark span.text-gray-700.dark\:text-gray-300 {
+            color: #ffffff !important;
+        }
+        
+        /* Ensure all package descriptions are white in dark mode */
+        .dark .star-border-content p {
+            color: #ffffff !important;
+        }
+        
+        /* Ensure all service descriptions are white in dark mode */
+        .dark .bg-white.dark\:bg-gray-700 p {
+            color: #ffffff !important;
+        }
+        
+        /* Force white text for all feature lists in professional package */
+        .dark .professionale .space-y-4 span,
+        .dark .professionale .flex.items-center.space-x-3 span {
+            color: #ffffff !important;
+        }
+        
+        /* Force white text for ALL strong tags in dark mode */
+        .dark .essenziale strong, 
+        .dark .professionale strong, 
+        .dark .continuativo strong,
+        .dark .space-y-4 strong,
+        .dark .flex.items-center.space-x-3 strong,
+        .dark span.text-gray-700 strong,
+        .dark .text-white strong {
+            color: #ffffff !important;
+        }
+        
+        /* Guarantee white text for specific feature items */
+        span.text-white, 
+        .dark span.text-white,
+        .dark .text-white {
+            color: #ffffff !important;
+        }
+        
+        /* Correzione colori per le descrizioni dei tier nel tema chiaro */
+        .star-border-content p.text-gray-600 {
+            color: #4b5563 !important; /* gray-600 - colore originale */
+        }
+        
+        /* Specifico per temi */
+        .dark .star-border-content p.text-gray-600.dark\:text-white {
+            color: #ffffff !important;
+        }
+        
+        /* Mantiene il colore originale per le feature dei tier nel tema chiaro */
+        .star-border-content .flex.items-center.space-x-3 span.text-gray-700 {
+            color: #374151 !important; /* gray-700 - colore originale */
+        }
+        
+        /* Enhanced Dark Mode Support - Maximum contrast and readability */
+        .dark {
+            background-color: #111827 !important;
+            color: #f9fafb !important;
+        }
+        
+        .dark body {
+            background-color: #111827 !important;
+            color: #f9fafb !important;
+        }
+        
+        .dark .star-border-content {
+            background: #1f2937 !important;
+            color: #f9fafb !important;
+        }
+        
+        .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+            color: #ffffff !important;
+        }
+        
+        .dark p, .dark span, .dark div {
+            color: #e5e7eb !important;
+        }
+        
+        .dark .text-gray-300 {
+            color: #ffffff !important; /* Cambiato da #d1d5db a bianco puro */
+        }
+        
+        .dark .text-gray-400 {
+            color: #9ca3af !important;
+        }
+        
+        .dark .text-gray-500 {
+            color: #9ca3af !important;
+        }
+        
+        .dark .text-gray-600 {
+            color: #d1d5db !important;
+        }
+        
+        .dark .text-gray-700 {
+            color: #e5e7eb !important;
+        }
+        
+        .dark .text-gray-900 {
+            color: #ffffff !important;
+        }
+        
+        /* Navigation dark mode fixes */
+        .dark nav {
+            background-color: rgba(15, 23, 42, 0.95) !important;
+            border-color: #475569 !important;
+        }
+        
+        /* Hero section dark mode */
+        .dark .bg-gradient-to-br {
+            background: linear-gradient(to bottom right, #111827, #1e293b) !important;
+        }
+        
+        /* Sections dark mode */
+        .dark section {
+            background-color: #111827 !important;
+        }
+        
+        .dark .bg-white {
+            background-color: #111827 !important;
+        }
+        
+        .dark .bg-gray-50 {
+            background-color: #1f2937 !important;
+        }
+        
+        .dark .bg-gray-800 {
+            background-color: #111827 !important;
+        }
+        
+        /* Card backgrounds in dark mode */
+        .dark .bg-gray-700 {
+            background-color: #1f2937 !important;
+            color: #ffffff !important;
+        }
+        
+        /* Footer in dark mode */
+        .dark footer {
+            background-color: #0f172a !important;
+        }
+        
+        /* Ensure footer title (Heykel Bejaoui) is white in both themes */
+        footer h3.text-2xl {
+            color: #ffffff !important;
+        }
+        
+        /* Ensure CTA and Footer elements have consistent colors in both themes */
+        .py-16.bg-gradient-to-r h2,
+        .py-16.bg-gradient-to-r p,
+        footer p,
+        footer .fas,
+        footer .fab {
+            color: #ffffff !important;
+        }
+        
+        .py-16.bg-gradient-to-r p.text-black {
+            color: #000000 !important;
+        }
+        
+        /* Price box styling fix - garantisce che tutti i testi nei price box siano bianchi */
+        .price-box-inner,
+        .price-box-inner *,
+        .price-main,
+        .price-subtitle,
+        .price-description {
+            color: white !important;
+        }
+        
+        /* Eccezioni per i colori personalizzati delle price box per ogni tier */
+        .essenziale .price-subtitle.text-amber-200 {
+            color: #fcd34d !important; /* amber-200 */
+        }
+        
+        .essenziale .price-main.text-amber-400 {
+            color: #fbbf24 !important; /* amber-400 */
+        }
+        
+        .essenziale .price-description.text-amber-100 {
+            color: #fef3c7 !important; /* amber-100 */
+        }
+        
+        .professionale .price-subtitle.text-emerald-200 {
+            color: #a7f3d0 !important; /* emerald-200 */
+        }
+        
+        .professionale .price-main.text-emerald-400 {
+            color: #34d399 !important; /* emerald-400 */
+        }
+        
+        .professionale .price-description.text-emerald-100 {
+            color: #d1fae5 !important; /* emerald-100 */
+        }
+        
+        .continuativo .price-subtitle.text-sky-200 {
+            color: #bae6fd !important; /* sky-200 */
+        }
+        
+        .continuativo .price-main.text-sky-400 {
+            color: #38bdf8 !important; /* sky-400 */
+        }
+        
+        .continuativo .price-description.text-sky-100 {
+            color: #e0f2fe !important; /* sky-100 */
+        }
+        
+        /* Ensure tier features are white in dark mode */
+        .dark .space-y-4 span,
+        .dark span.text-gray-700 {
+            color: #ffffff !important;
+        }
+        
+        /* Ensure all feature descriptions are white in dark mode */
+        .dark .flex.items-center.space-x-3 span {
+            color: #ffffff !important;
+        }
+        
+        /* Ensure span with strong inside is white in dark mode */
+        .dark span strong,
+        .dark .flex.items-center.space-x-3 span strong,
+        .dark .text-gray-700.dark\:text-white strong {
+            color: #ffffff !important;
+        }
+        
+        /* Specific override for tier features text */
+        .dark span.text-gray-700.dark\:text-gray-300 {
+            color: #ffffff !important;
+        }
+        
+        /* Ensure all package descriptions are white in dark mode */
+        .dark .star-border-content p {
+            color: #ffffff !important;
+        }
+        
+        /* Ensure all service descriptions are white in dark mode */
+        .dark .bg-white.dark\:bg-gray-700 p {
+            color: #ffffff !important;
+        }
+        
+        /* Force white text for all feature lists in professional package */
+        .dark .professionale .space-y-4 span,
+        .dark .professionale .flex.items-center.space-x-3 span {
+            color: #ffffff !important;
+        }
+        
+        /* Force white text for ALL strong tags in dark mode */
+        .dark .essenziale strong, 
+        .dark .professionale strong, 
+        .dark .continuativo strong,
+        .dark .space-y-4 strong,
+        .dark .flex.items-center.space-x-3 strong,
+        .dark span.text-gray-700 strong,
+        .dark .text-white strong {
+            color: #ffffff !important;
+        }
+        
+        /* Guarantee white text for specific feature items */
+        span.text-white, 
+        .dark span.text-white,
+        .dark .text-white {
+            color: #ffffff !important;
+        }
+        
+        /* Correzione colori per le descrizioni dei tier nel tema chiaro */
+        .star-border-content p.text-gray-600 {
+            color: #4b5563 !important; /* gray-600 - colore originale */
+        }
+        
+        /* Specifico per temi */
+        .dark .star-border-content p.text-gray-600.dark\:text-white {
+            color: #ffffff !important;
+        }
+        
+        /* Mantiene il colore originale per le feature dei tier nel tema chiaro */
+        .star-border-content .flex.items-center.space-x-3 span.text-gray-700 {
+            color: #374151 !important; /* gray-700 - colore originale */
+        }
+        
+        /* Layout per spingere i bottoni in basso */
+        .star-border-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .tier-features {
+            flex-grow: 1;
+        }
+        
+        .tier-buttons {
+            margin-top: auto;
+            padding-top: 1rem;
+        }
+        
+        /* Animazione di vibrazione dinamica per call-to-action con ciclo graduale */
+        @keyframes gentle-shake {
+            /* Fase iniziale di riposo */
+            0%, 2% { transform: translateX(0) scale(1); }
+            
+            /* Fase di movimento lento e delicato (2-15%) */
+            3% { transform: translateX(-1px) rotate(-0.2deg) scale(1.005); }
+            5% { transform: translateX(1px) rotate(0.2deg) scale(1.005); }
+            7% { transform: translateX(-1px) rotate(-0.2deg) scale(1.005); }
+            9% { transform: translateX(1px) rotate(0.2deg) scale(1.005); }
+            11% { transform: translateX(-0.5px) rotate(-0.1deg) scale(1.003); }
+            13% { transform: translateX(0.5px) rotate(0.1deg) scale(1.003); }
+            15% { transform: translateX(0) scale(1); }
+            
+            /* Breve pausa (15-20%) */
+            20% { transform: translateX(0) scale(1); }
+            
+            /* Fase di movimento più deciso (20-30%) */
+            21% { transform: translateX(-2px) rotate(-0.4deg) scale(1.01); }
+            23% { transform: translateX(2px) rotate(0.4deg) scale(1.01); }
+            25% { transform: translateX(-2px) rotate(-0.3deg) scale(1.01); }
+            27% { transform: translateX(1px) rotate(0.3deg) scale(1.01); }
+            29% { transform: translateX(0) scale(1); }
+            
+            /* Breve pausa (30-35%) */
+            35% { transform: translateX(0) scale(1); }
+            
+            /* Fase di movimento più intenso (35-50%) */
+            37% { transform: translateX(-3px) rotate(-0.6deg) scale(1.02); }
+            39% { transform: translateX(3px) rotate(0.6deg) scale(1.02); }
+            41% { transform: translateX(-3px) rotate(-0.5deg) scale(1.02); }
+            43% { transform: translateX(2px) rotate(0.5deg) scale(1.02); }
+            45% { transform: translateX(-2px) rotate(-0.3deg) scale(1.015); }
+            47% { transform: translateX(1px) rotate(0.3deg) scale(1.015); }
+            49% { transform: translateX(0) scale(1); }
+            
+            /* Lunga pausa (50-100%) */
+            100% { transform: translateX(0) scale(1); }
+        }
+        
+        .cta-shake {
+            display: inline-block;
+            animation: gentle-shake 12s ease-in-out infinite;
+            position: relative;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 1px rgba(0,0,0,0.05);
+        }
+        
+        .cta-shake:before {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.8), transparent);
+            transform: scaleX(0.8);
+            opacity: 0;
+            transition: all 0.5s ease;
+            border-radius: 2px;
+        }
+        
+        .cta-shake:hover:before {
+            transform: scaleX(1);
+            opacity: 1;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+        }
+        
+        .cta-shake:hover {
+            transform: translateY(-2px);
+            text-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+        }
+        
+        .dark .cta-shake:before {
+            background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.8), transparent);
+            box-shadow: 0 2px 8px rgba(96, 165, 250, 0.2);
+        }
+        
+        /* Effetto True Focus per il testo del hero section */
+        .true-focus-word {
+            display: inline-block;
+            opacity: 0;
+            filter: blur(15px);
+            transform: scale(0.95);
+            margin-right: 0.35em;
+        }
+        
+        .true-focus-word:last-child {
+            margin-right: 0;
+        }
+        
+        @keyframes true-focus-animation {
+            0% {
+                opacity: 0;
+                filter: blur(15px);
+                transform: scale(0.95);
+            }
+            6% {
+                opacity: 0.5;
+                filter: blur(10px);
+                transform: scale(0.97);
+            }
+            12% {
+                opacity: 1;
+                filter: blur(0);
+                transform: scale(1);
+            }
+            88% {
+                opacity: 1;
+                filter: blur(0);
+                transform: scale(1);
+            }
+            94% {
+                opacity: 0.5;
+                filter: blur(10px);
+                transform: scale(0.97);
+            }
+            100% {
+                opacity: 0;
+                filter: blur(15px);
+                transform: scale(0.95);
+            }
+        }
+        
+        /* Applicare un ritardo crescente per ogni parola con ripetizione ogni 20 secondi */
+        .true-focus-word:nth-child(1) { animation: true-focus-animation 20s infinite; animation-delay: 0.1s; }
+        .true-focus-word:nth-child(2) { animation: true-focus-animation 20s infinite; animation-delay: 0.2s; }
+        .true-focus-word:nth-child(3) { animation: true-focus-animation 20s infinite; animation-delay: 0.3s; }
+        .true-focus-word:nth-child(4) { animation: true-focus-animation 20s infinite; animation-delay: 0.4s; }
+        .true-focus-word:nth-child(5) { animation: true-focus-animation 20s infinite; animation-delay: 0.5s; }
+        .true-focus-word:nth-child(6) { animation: true-focus-animation 20s infinite; animation-delay: 0.6s; }
+        .true-focus-word:nth-child(7) { animation: true-focus-animation 20s infinite; animation-delay: 0.7s; }
+        .true-focus-word:nth-child(8) { animation: true-focus-animation 20s infinite; animation-delay: 0.8s; }
+        .true-focus-word:nth-child(9) { animation: true-focus-animation 20s infinite; animation-delay: 0.9s; }
+        .true-focus-word:nth-child(10) { animation: true-focus-animation 20s infinite; animation-delay: 1.0s; }
+        .true-focus-word:nth-child(11) { animation: true-focus-animation 20s infinite; animation-delay: 1.1s; }
+        .true-focus-word:nth-child(12) { animation: true-focus-animation 20s infinite; animation-delay: 1.2s; }
+        .true-focus-word:nth-child(13) { animation: true-focus-animation 20s infinite; animation-delay: 1.3s; }
+        .true-focus-word:nth-child(14) { animation: true-focus-animation 20s infinite; animation-delay: 1.4s; }
+        .true-focus-word:nth-child(15) { animation: true-focus-animation 20s infinite; animation-delay: 1.5s; }
+        .true-focus-word:nth-child(16) { animation: true-focus-animation 20s infinite; animation-delay: 1.6s; }
+        
+        /* Reduce motion per accessibilità */
+        @media (prefers-reduced-motion: reduce) {
+            .true-focus-word {
+                animation: none !important;
+                opacity: 1 !important;
+                filter: blur(0) !important;
+                transform: scale(1) !important;
+            }
+        }
+
+        /* Mobile optimization */
+        @media screen and (max-width: 768px) {
+            html {
+                -webkit-text-size-adjust: 100%;
+                -ms-text-size-adjust: 100%;
+            }
+            
+            body {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                text-rendering: optimizeLegibility;
+            }
+            
+            * {
+                -webkit-tap-highlight-color: transparent;
+            }
+        }
+
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- WhatsApp Button with breathing effect -->
+    <a href="https://wa.me/393209044901" target="_blank" rel="noopener" class="whatsapp-button">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- Navigation -->
+    <nav class="bg-white/90 dark:bg-slate-900/90 shadow-sm fixed w-full z-40 border-b border-slate-200 dark:border-slate-700">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex flex-col">
+                    <h1 class="text-xl font-bold text-gray-900 dark:text-white">Heykel Bejaoui</h1>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Sviluppo siti web professionali per psicologi, studi medici e formatori</p>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="mailto:HeykelBejaoui95@gmail.com" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" aria-label="Email">
+                        <i class="fas fa-envelope text-lg"></i>
+                    </a>
+                    <a href="tel:+393209044901" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" aria-label="Telefono">
+                        <i class="fas fa-phone text-lg"></i>
+                    </a>
+                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" aria-label="Cambia tema">
+                        <i class="fas fa-sun text-lg dark:hidden"></i>
+                        <i class="fas fa-moon text-lg hidden dark:block"></i>
+                    </button>
+                </div>
+                       </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-blue-900">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 fade-in">
+                <span class="price-highlight">
+                    Pacchetti Siti Web
+                </span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                <span class="true-focus-word">Soluzioni</span>
+                <span class="true-focus-word">professionali</span>
+                <span class="true-focus-word">per</span>
+                <span class="true-focus-word">psicologi,</span>
+                <span class="true-focus-word">studi</span>
+                <span class="true-focus-word">medici</span>
+                <span class="true-focus-word">e</span>
+                <span class="true-focus-word">formatori.</span>
+                <span class="true-focus-word">Scegli</span>
+                <span class="true-focus-word">il</span>
+                <span class="true-focus-word">pacchetto</span>
+                <span class="true-focus-word">più</span>
+                <span class="true-focus-word">adatto</span>
+                <span class="true-focus-word">alle</span>
+                <span class="true-focus-word">tue</span>
+                <span class="true-focus-word">esigenze.</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Pacchetti Section -->
+    <section class="py-16 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 cta-shake">
+                    Scegli il tuo pacchetto
+                </h2>
+                <p class="text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-4xl mx-auto mb-2 md:mb-4">Ogni pacchetto include tutto il necessario per avere un sito web professionale e funzionale.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <!-- Pacchetti -->
+                <!-- Pacchetto Essenziale -->
+                <div class="star-border floating fade-in essenziale">
+                    <div class="star-border-content">
+                        <div class="tier-features">
+                            <div class="text-center mb-6">
+                                <h3 class="text-2xl font-bold mb-2 text-gray-900 dark:text-white">🥉 Essenziale</h3>
+                                <p class="text-slate-700 dark:text-slate-300">La soluzione ideale per chi vuole iniziare con un budget contenuto.</p>
+                            </div>
+                            
+                            <div class="text-center mb-6">
+                                <div class="price-box-star-border">
+                                    <div class="price-box-inner">
+                                        <div class="price-subtitle text-amber-200">Soluzione base</div>
+                                        <div class="price-main text-amber-400 font-bold text-4xl">390 €</div>
+                                        <div class="price-description text-amber-100">Pagamento unico</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4 mb-6">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-check text-emerald-500"></i>
+                                    <span class="text-slate-700 dark:text-slate-300">Pagina principale completa e professionale</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-check text-emerald-500"></i>
+                                    <span class="text-slate-700 dark:text-slate-300">Pagina shop: collegamento ai tuoi prodotti Shopify, o integrazione link PayPal/Amazon per vetrina prodotti</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-check text-emerald-500"></i>
+                                    <span class="text-slate-700 dark:text-slate-300">Pagine legali obbligatorie incluse</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-check text-emerald-500"></i>
+                                    <span class="text-slate-700 dark:text-slate-300">Design responsive per tutti i dispositivi</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-check text-emerald-500"></i>
+                                    <span class="text-slate-700 dark:text-slate-300"><strong>Form contatti personalizzabile</strong> con protezione anti-bot e inoltro email diretto</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tier-buttons">
+                            <div class="space-y-3">
+                                <a href="https://paypal.me/2Mike3/390?country.x=IT&locale.x=it_IT&ff=0&note=Acquisto%20Pacchetto%20Essenziale%20-%20Sito%20Web%20390%E2%82%AC" target="_blank" class="paypal-btn w-full text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 block text-center" aria-label="Paga con PayPal">
+                                    <i class="fab fa-paypal mr-2"></i>
+                                    Paga con PayPal - 390€
+                                </a>
+                                <a href="https://wa.me/393209044901?text=Ciao!%20Vorrei%20maggiori%20informazioni%20sul%20pacchetto%20Essenziale%20(390€).%20Posso%20chiedere%20ulteriori%20dettagli%20a%20riguardo?" 
+                                   class="block text-center mt-2 whatsapp-info-link" 
+                                   target="_blank" aria-label="Contatta su WhatsApp">
+                                    <i class="fab fa-whatsapp mr-2"></i>
+                                    Chiedi informazioni
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pacchetto Professionale -->
+                <div class="star-border floating fade-in professionale" style="animation-delay: 0.2s;">
+                    <div class="star-border-content">
+                        <div class="tier-features">
+                            <div class="text-center mb-6">
+                                <h3 class="text-2xl font-bold mb-2 text-gray-900 dark:text-white">🥈 Professionale</h3>
+                                <p class="text-slate-700 dark:text-slate-300">Il perfetto equilibrio tra qualità e prezzo. Include tutto per partire subito!</p>
+                            </div>
+                            
+                            <div class="text-center mb-6">
+                                <div class="price-box-star-border">
+                                    <div class="price-box-inner">
+                                        <div class="price-subtitle text-emerald-200">Equilibrio perfetto</div>
+                                        <div class="price-main text-emerald-400 font-bold text-4xl">490 €</div>
+                                        <div class="price-description text-emerald-100">Pagamento unico</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4 mb-6">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-check text-emerald-500"></i>
+                                    <span class="text-slate-700 dark:text-slate-300"><strong>Include tutto del pacchetto Essenziale</strong></span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-plus text-amber-500"></i>
+                                    <span class="text-slate-700 dark:text-slate-300"><strong>SEO di base + Setup Google Analytics e Search Console</strong></span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-plus text-amber-500"></i>
+                                    <span class="text-slate-700 dark:text-slate-300"><strong>Assistenza post-lancio per 30 giorni</strong></span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-plus text-amber-500"></i>
+                                    <span class="text-slate-700 dark:text-slate-300"><strong>3 ore di interventi inclusi</strong> (valore 75€)</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-plus text-amber-500"></i>
+                                    <span class="text-slate-700 dark:text-slate-300"><strong>Banner cookie GDPR-compliant</strong> con gestione consensi</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-plus text-amber-500"></i>
+                                    <span class="text-slate-700 dark:text-slate-300"><strong>Ottimizzazione velocità sito</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tier-buttons">
+                            <div class="space-y-3">
+                                <a href="https://paypal.me/2Mike3/490?country.x=IT&locale.x=it_IT&ff=0&note=Acquisto%20Pacchetto%20Professionale%20-%20Sito%20Web%20490%E2%82%AC%20-%20Scelta%20Consigliata" target="_blank" class="paypal-btn w-full text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 block text-center" aria-label="Paga con PayPal">
+                                    <i class="fab fa-paypal mr-2"></i>
+                                    Paga con PayPal - 490€
+                                </a>
+                                <a href="https://wa.me/393209044901?text=Ciao!%20Sono%20interessato%20al%20pacchetto%20Professionale%20(490€).%20Posso%20chiedere%20ulteriori%20informazioni%20a%20riguardo?" 
+                                   class="block text-center mt-2 whatsapp-info-link" 
+                                   target="_blank" aria-label="Contatta su WhatsApp">
+                                    <i class="fab fa-whatsapp mr-1"></i>Chiedi informazioni
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pacchetto Continuativo -->
+                <div class="star-border floating fade-in continuativo" style="animation-delay: 0.4s;">
+                    <div class="star-border-content">
+                        <div class="tier-features">
+                            <div class="text-center mb-6">
+                                <h3 class="text-2xl font-bold mb-2 text-gray-900 dark:text-white">
+                                    🥇 Continuativo
+                                </h3>
+                                <p class="text-slate-700 dark:text-slate-300">Supporto continuo! Perfetto per chi vuole un sito sempre aggiornato e funzionante.</p>
+                            </div>
+                            
+                            <div class="text-center mb-4">
+                                <div class="price-box-star-border">
+                                    <div class="price-box-inner">
+                                        <div class="price-subtitle text-sky-200">Massimo valore</div>
+                                        <div class="price-main text-sky-400 font-bold text-4xl">410 €</div>
+                                        <div class="price-description text-sky-100">Costo iniziale + 1° trimestre</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center mb-6">
+                                <div class="text-xl font-semibold text-sky-600 dark:text-sky-400 mb-2">poi 60 €/trimestre</div>
+                                <div class="text-xs text-emerald-500 dark:text-emerald-300 font-semibold mt-1 green-highlight">Include 36 ore/anno di interventi (valore 900€)</div>
+                            </div>
+                            
+                            <div class="space-y-4 mb-6">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-check text-emerald-500"></i>
+                                    <span class="text-slate-700 dark:text-slate-300"><strong>Include tutto del pacchetto Professionale</strong></span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-plus text-amber-500"></i>
+                                    <span class="text-slate-700 dark:text-slate-300"><strong>Manutenzione continuativa</strong></span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-plus text-amber-500"></i>
+                                    <span class="text-slate-700 dark:text-slate-300"><strong>3 ore mensili incluse</strong> (valore 75€/mese)</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-plus text-amber-500"></i>
+                                    <span class="text-slate-700 dark:text-slate-300"><strong>Aggiornamenti di sicurezza e tecnici</strong></span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-percentage text-amber-500"></i>
+                                    <span class="text-slate-700 dark:text-slate-300"><strong>Sconto 15%</strong> pagando il primo anno completo in anticipo</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tier-buttons">
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <a href="https://paypal.me/2Mike3/410?country.x=IT&locale.x=it_IT&ff=0&note=Pacchetto%20Continuativo%20-%20Setup%20Sito%20Web%20%2B%201%C2%B0%20Trimestre%20410%E2%82%AC" target="_blank" class="flex-1 paypal-btn text-white py-3 px-4 rounded-lg font-medium transition-colors text-center text-sm block">
+                                        <i class="fab fa-paypal mr-2"></i>Paga con PayPal - 410€
+                                    </a>
+                                    <div class="group relative">
+                                        <button class="w-10 h-10 bg-sky-100 dark:bg-sky-900/30 text-sky-600 dark:text-sky-400 rounded-lg hover:bg-sky-200 dark:hover:bg-sky-800/50 transition-colors flex items-center justify-center">
+                                            <i class="fas fa-info text-sm"></i>
+                                        </button>
+                                        <div class="absolute right-[40%] md:right-[70%] top-1 w-60 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-lg p-3 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[99999]">
+                                            <div class="text-xs text-slate-600 dark:text-slate-400">
+                                                <div class="font-bold mb-2">Sito web + 1° trimestre</div>
+                                                <div class="flex justify-between items-center mb-1">
+                                                    <span>(350€ + 60€ = 410€)</span>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <div>Poi 60€ ogni 3 mesi</div>
+                                                    <div><strong>Primo anno totale: 590€</strong> (410€ + 180€)</div>
+                                                    <div>Anni successivi: 240€/anno</div>
+                                                    <div class="text-emerald-500 dark:text-emerald-300 font-semibold mt-1 green-highlight">Include 36 ore/anno di interventi (valore 900€)</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center gap-3 mb-1">
+                                    <a href="https://paypal.me/2Mike3/501?country.x=IT&locale.x=it_IT&ff=0&note=Pacchetto%20Continuativo%20-%20Primo%20Anno%20Completo%20con%20Sconto%2015%25%20-%20501%E2%82%AC" target="_blank" class="flex-1 bg-emerald-600 text-white hover:bg-emerald-700 dark:hover:bg-emerald-800 py-2 px-4 rounded-lg font-semibold transition-colors text-center text-sm block">
+                                        <i class="fab fa-paypal mr-2"></i>Sconto 15% primo anno - 501€
+                                    </a>
+                                    <div class="group relative">
+                                        <button class="w-10 h-10 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-lg hover:bg-emerald-200 dark:hover:bg-emerald-800/50 transition-colors flex items-center justify-center">
+                                            <i class="fas fa-info text-sm"></i>
+                                        </button>
+                                        <div class="absolute right-[40%] md:right-[70%] -top-2 w-60 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-lg p-3 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[99999]">
+                                            <div class="text-xs text-slate-600 dark:text-slate-400">
+                                                <div class="font-bold mb-2">Sconto 15% sul primo anno completo</div>
+                                                <div class="mb-1">(501€ invece di 590€)</div>
+                                                <div class="mt-2">
+                                                    <div>Sito web + manutenzione annuale inclusa</div>
+                                                    <div class="text-emerald-500 dark:text-emerald-300 font-semibold green-highlight">Risparmio di 89€ con pagamento anticipato</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <a href="https://wa.me/393209044901?text=Ciao!%20Mi%20interessa%20il%20pacchetto%20Continuativo.%20Posso%20chiedere%20ulteriori%20informazioni%20a%20riguardo?" 
+                                   class="block text-center mt-2 whatsapp-info-link"
+                                   target="_blank" aria-label="Contatta su WhatsApp">
+                                    <i class="fab fa-whatsapp mr-2"></i>
+                                    Chiedi informazioni
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servizi Extra Section -->
+    <section class="py-16 bg-gray-50 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">Servizi Extra</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Assistenza Post Vendita -->
+                <div class="bg-white dark:bg-gray-700 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-headset text-2xl text-blue-600 dark:text-blue-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Assistenza Post Vendita</h3>
+                        <p class="text-gray-600 dark:text-white mb-4">Modifiche e personalizzazioni dopo la consegna</p>
+                        <div class="text-3xl font-bold text-blue-600 mb-4">25 €/ora<span class="text-lg"> (min. 1 ora)</span></div>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                            Tariffa unificata per tutti i servizi di assistenza
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Dominio & Hosting -->
+                <div class="bg-white dark:bg-gray-700 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-server text-2xl text-purple-600 dark:text-purple-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Dominio & Hosting</h3>
+                        <p class="text-gray-600 dark:text-white mb-4">Servizi di hosting e registrazione dominio</p>
+                        <div class="text-3xl font-bold text-purple-600 mb-4">Da valutare</div>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                            Preventivo personalizzato in base alle esigenze
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white !important">Hai già un'idea in mente? Non aspettare!</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto text-black !important">
+                Ogni giorno di ritardo è un'opportunità persa. Contattami ora per una consulenza gratuita.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="mailto:HeykelBejaoui95@gmail.com" 
+                   class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center justify-center">
+                    <i class="fas fa-envelope mr-2"></i>
+                    <span class="text-blue-600 !important">Inizia Subito</span>
+                </a>
+                <a href="https://wa.me/393209044901?text=Ciao!%20Vorrei%20una%20consulenza%20gratuita" 
+                   target="_blank"
+                   class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors inline-flex items-center justify-center">
+                    <i class="fab fa-whatsapp mr-2"></i>
+                    <span class="text-white !important">Chat WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 dark:bg-black text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <h3 class="text-2xl font-bold mb-2 text-white !important">Heykel Bejaoui</h3>
+                <p class="text-white mb-6 !important">Sviluppo siti web professionali per psicologi, studi medici e formatori</p>
+                
+                <div class="flex justify-center space-x-6 mb-8">
+                    <a href="mailto:HeykelBejaoui95@gmail.com" class="text-white hover:text-white transition-colors" aria-label="Email">
+                        <i class="fas fa-envelope text-2xl text-white !important"></i>
+                    </a>
+                    <a href="tel:+393209044901" class="text-white hover:text-white transition-colors" aria-label="Telefono">
+                        <i class="fas fa-phone text-2xl text-white !important"></i>
+                    </a>
+                    <a href="https://wa.me/393209044901" target="_blank" class="text-white hover:text-white transition-colors" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp text-2xl text-white !important"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-white !important">&copy; 2025 Heykel Bejaoui. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="cookie-banner">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex-1">
+                    <div class="flex items-center gap-2 mb-2">
+                        <i class="fas fa-cookie-bite text-amber-500 text-lg"></i>
+                        <h3 class="text-white font-semibold">Informativa Cookie</h3>
+                    </div>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Utilizziamo cookie essenziali per il funzionamento del sito e cookie analitici per migliorare la tua esperienza. 
+                        <button id="cookie-settings" class="text-emerald-400 hover:text-emerald-300 underline">Gestisci preferenze</button>
+                    </p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button id="accept-all-cookies" class="cookie-btn-accept">
+                        <i class="fas fa-check mr-2"></i>Accetta tutti
+                    </button>
+                    <button id="accept-essential-cookies" class="cookie-btn-settings">
+                        Solo essenziali
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Modal -->
+    <div id="cookie-modal" class="modal">
+        <div class="modal-content">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xl font-bold text-slate-800 dark:text-white">Impostazioni Cookie</h2>
+                    <button id="close-cookie-modal" class="text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <p class="text-slate-600 dark:text-slate-300 text-sm mb-6">
+                    Scegli quali cookie accettare. I cookie essenziali sono necessari per il funzionamento del sito.
+                </p>
+                
+                <div class="space-y-4">
+                    <!-- Cookie Essenziali -->
+                    <div class="border border-slate-200 dark:border-slate-600 rounded-lg p-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex-1">
+                                <h4 class="font-semibold mb-2 text-slate-800 dark:text-white">Cookie Essenziali</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">
+                                    Necessari per il funzionamento del sito. Non possono essere disabilitati.
+                                </p>
+                            </div>
+                            <div class="cookie-toggle active ml-4" data-essential="true">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cookie Analitici -->
+                    <div class="border border-slate-200 dark:border-slate-600 rounded-lg p-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex-1">
+                                <h4 class="font-semibold mb-2 text-slate-800 dark:text-white">Cookie Analitici (Google Analytics)</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">
+                                    Ci aiutano a migliorare il sito analizzando come viene utilizzato.
+                                </p>
+                            </div>
+                            <div id="analytics-toggle" class="cookie-toggle ml-4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-3 mt-6">
+                    <button id="save-cookie-preferences" class="flex-1 cookie-btn-accept">
+                        <i class="fas fa-save mr-2"></i>Salva Preferenze
+                    </button>
+                    <button id="accept-all-modal" class="flex-1 cookie-btn-settings">
+                        Accetta Tutti
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Torna su">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Theme Management - Sistema robusto come ShopSiti.html
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        // Check for saved theme preference or use preferred color scheme
+        let savedTheme = localStorage.getItem('color-theme');
+        if (!savedTheme) {
+            savedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        if (savedTheme === 'dark') {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+
+        // Toggle theme
+        function toggleTheme() {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        }
+
+        if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+        
+        // Back to Top Button - Sistema robusto come ShopSiti.html
+        const backToTop = document.getElementById('back-to-top');
+
+        function handleBackToTopVisibility() {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+                backToTop.classList.remove('hide');
+            } else {
+                backToTop.classList.add('hide');
+                backToTop.classList.remove('visible');
+            }
+        }
+        
+        window.addEventListener('scroll', handleBackToTopVisibility);
+        window.addEventListener('load', handleBackToTopVisibility);
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Cookie Management System - Enhanced
+        let analyticsEnabled = false;
+        
+        // Check if user has already made a choice
+        function checkCookieConsent() {
+            const consent = localStorage.getItem('cookieConsent');
+            if (!consent) {
+                // Show banner after 1 second
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').classList.add('show');
+                }, 1000);
+            } else {
+                const preferences = JSON.parse(consent);
+                if (preferences.analytics) {
+                    enableAnalytics();
+                }
+            }
+        }
+        
+        // Enable Google Analytics
+        function enableAnalytics() {
+            if (analyticsEnabled) return;
+            
+            // Google Analytics code would go here
+            // Example: gtag('config', 'GA_MEASUREMENT_ID');
+            analyticsEnabled = true;
+            console.log('✅ Google Analytics attivato');
+        }
+        
+        // Accept all cookies
+        function acceptAllCookies() {
+            const consent = {
+                essential: true,
+                analytics: true,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('cookieConsent', JSON.stringify(consent));
+            enableAnalytics();
+            hideCookieBanner();
+        }
+        
+        // Accept only essential cookies
+        function acceptEssentialOnly() {
+            const consent = {
+                essential: true,
+                analytics: false,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('cookieConsent', JSON.stringify(consent));
+            hideCookieBanner();
+        }
+        
+        // Hide cookie banner
+        function hideCookieBanner() {
+            const banner = document.getElementById('cookie-banner');
+            banner.classList.remove('show');
+        }
+        
+        // Open cookie modal
+        function openCookieModal() {
+            const modal = document.getElementById('cookie-modal');
+            modal.classList.add('show');
+            
+            // Load current preferences
+            const consent = localStorage.getItem('cookieConsent');
+            if (consent) {
+                const preferences = JSON.parse(consent);
+                const toggle = document.getElementById('analytics-toggle');
+                if (preferences.analytics) {
+                    toggle.classList.add('active');
+                }
+            }
+        }
+        
+        // Close cookie modal
+        function closeCookieModal() {
+            document.getElementById('cookie-modal').classList.remove('show');
+        }
+        
+        // Toggle analytics in modal
+        function toggleAnalytics() {
+            const toggle = document.getElementById('analytics-toggle');
+            toggle.classList.toggle('active');
+        }
+        
+        // Save preferences from modal
+        function savePreferences() {
+            const analyticsToggle = document.getElementById('analytics-toggle');
+            const analyticsConsent = analyticsToggle.classList.contains('active');
+            
+            const consent = {
+                essential: true,
+                analytics: analyticsConsent,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('cookieConsent', JSON.stringify(consent));
+            
+            if (analyticsConsent) {
+                enableAnalytics();
+            }
+            
+            closeCookieModal();
+            hideCookieBanner();
+        }
+        
+        // Accept all from modal
+        function acceptAllCookiesFromModal() {
+            document.getElementById('analytics-toggle').classList.add('active');
+            savePreferences();
+        }
+        
+        // Set up event listeners
+        document.getElementById('accept-all-cookies').addEventListener('click', acceptAllCookies);
+        document.getElementById('accept-essential-cookies').addEventListener('click', acceptEssentialOnly);
+        document.getElementById('cookie-settings').addEventListener('click', openCookieModal);
+        document.getElementById('close-cookie-modal').addEventListener('click', closeCookieModal);
+        document.getElementById('save-cookie-preferences').addEventListener('click', savePreferences);
+        document.getElementById('accept-all-modal').addEventListener('click', acceptAllCookiesFromModal);
+        document.getElementById('analytics-toggle').addEventListener('click', toggleAnalytics);
+        
+        // Close modal when clicking outside
+        document.getElementById('cookie-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCookieModal();
+            }
+        });
+        
+        // Initialize cookie system
+        checkCookieConsent();
+        
+        // Fade in animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for fade-in animation
+        document.querySelectorAll('.floating').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Service extra buttons
+        document.querySelectorAll('button').forEach(btn => {
+            if (btn.textContent.includes('Richiedi')) {
+                btn.addEventListener('click', () => {
+                    window.location.href = 'mailto:HeykelBejaoui95@gmail.com?subject=Richiesta ' + btn.textContent;
+                });
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Keyboard navigation support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                cookieModal.classList.remove('show');
+            }
+        });
+        
+        // Focus management for accessibility
+        const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+        
+        cookieModal.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                const focusableContent = cookieModal.querySelectorAll(focusableElements);
+                const firstElement = focusableContent[0];
+                const lastElement = focusableContent[focusableContent.length - 1];
+                
+                if (e.shiftKey) {
+                    if (document.activeElement === firstElement) {
+                        lastElement.focus();
+                        e.preventDefault();
+                    }
+                } else {
+                    if (document.activeElement === lastElement) {
+                        firstElement.focus();
+                        e.preventDefault();
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
