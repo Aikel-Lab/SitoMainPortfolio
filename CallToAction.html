@@ -1530,6 +1530,24 @@
         .continuativo.floating {
             animation: float 6s ease-in-out infinite !important;
         }
+
+        .barretta-decorativa {
+  height: 8px;
+  width: 160px;
+  background: linear-gradient(90deg, #6366f1 0%, #a21caf 100%);
+  border-radius: 6px;
+  margin: 18px auto 18px auto;
+  transition: width 0.3s, height 0.3s;
+}
+@media (max-width: 640px) {
+  .barretta-decorativa {
+    width: 90vw;
+    min-width: 120px;
+    max-width: 340px;
+    height: 10px;
+    margin: 20px auto 20px auto;
+  }
+}
     </style>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
@@ -1599,6 +1617,9 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 cta-shake">
                     Scegli il tuo pacchetto
                 </h2>
+                <div class="mx-auto my-0 mb-6 flex justify-center">
+                  <div class="barretta-decorativa"></div>
+                </div>
                 <p class="text-base md:text-lg text-black dark:text-gray-400 max-w-4xl mx-auto mb-2 md:mb-4">Ogni pacchetto include tutto il necessario per avere un sito web professionale e funzionale.</p>
             </div>
             
@@ -2023,10 +2044,10 @@
             const themeToggle = document.getElementById('theme-toggle');
             const html = document.documentElement;
 
-            // Check for saved theme preference or use preferred color scheme
+            // Check for saved theme preference or default to dark theme
             let savedTheme = localStorage.getItem('color-theme');
             if (!savedTheme) {
-                savedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                savedTheme = 'dark'; // Default to dark theme
             }
             if (savedTheme === 'dark') {
                 html.classList.add('dark');
