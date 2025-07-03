@@ -211,6 +211,8 @@
             z-index: 1;
             padding: 1.25rem;
             height: 100%;
+            display: flex;
+            flex-direction: column;
         }
         
         .dark .star-border-content {
@@ -1504,6 +1506,30 @@
         nav .dark\:bg-gray-800 {
             background: transparent !important;
         }
+
+        /* Disattiva completamente tutte le animazioni per il pacchetto Continuativo */
+        .continuativo:hover,
+        .continuativo:hover .star-border-content,
+        .continuativo .star-border-content:hover,
+        .continuativo.floating:hover,
+        .continuativo.fade-in {
+            transform: none !important;
+            transition: none !important;
+            animation: none !important;
+        }
+        
+        /* Forza lo stato normale anche durante le transizioni e blocca fade-in */
+        .continuativo,
+        .continuativo .star-border-content,
+        .continuativo.fade-in {
+            transition: transform 0s !important;
+            animation: none !important;
+        }
+        
+        /* Mantieni solo l'animazione floating base per il Continuativo, senza hover effects */
+        .continuativo.floating {
+            animation: float 6s ease-in-out infinite !important;
+        }
     </style>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
@@ -1517,20 +1543,20 @@
         <div class="container mx-auto px-4 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex flex-col">
-                    <h1 class="text-xl font-bold text-gray-900 dark:text-white">Heykel Bejaoui</h1>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">Sviluppo siti web professionali per psicologi, studi medici e formatori</p>
+                    <h1 class="text-xl font-bold text-white !important">Heykel Bejaoui</h1>
+                    <p class="text-sm text-white !important">Sviluppo siti web professionali per psicologi, studi medici e formatori</p>
                 </div>
                 
                 <div class="flex items-center space-x-4">
-                    <a href="mailto:HeykelBejaoui95@gmail.com" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" aria-label="Email">
-                        <i class="fas fa-envelope text-lg"></i>
+                    <a href="mailto:HeykelBejaoui95@gmail.com" class="text-white hover:text-white transition-colors" aria-label="Email">
+                        <i class="fas fa-envelope text-lg text-white !important"></i>
                     </a>
-                    <a href="tel:+393209044901" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" aria-label="Telefono">
-                        <i class="fas fa-phone text-lg"></i>
+                    <a href="tel:+393209044901" class="text-white hover:text-white transition-colors" aria-label="Telefono">
+                        <i class="fas fa-phone text-lg text-white !important"></i>
                     </a>
-                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" aria-label="Cambia tema">
-                        <i class="fas fa-sun text-lg dark:hidden"></i>
-                        <i class="fas fa-moon text-lg hidden dark:block"></i>
+                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" aria-label="Cambia tema">
+                        <i class="fas fa-sun text-lg text-white !important dark:hidden"></i>
+                        <i class="fas fa-moon text-lg text-white !important hidden dark:block"></i>
                     </button>
                 </div>
                        </div>
@@ -1581,7 +1607,7 @@
                 <!-- Pacchetto Essenziale -->
                 <div class="star-border floating fade-in essenziale">
                     <div class="star-border-content">
-                        <div class="tier-features">
+                        <div class="tier-features" style="flex-grow: 1;">
                             <div class="text-center mb-6">
                                 <h3 class="text-2xl font-bold mb-2 text-gray-900 dark:text-white">🥉 Essenziale</h3>
                                 <p class="text-slate-700 dark:text-slate-300">La soluzione ideale per chi vuole iniziare con un budget contenuto.</p>
@@ -1621,7 +1647,7 @@
                             </div>
                         </div>
                         
-                        <div class="tier-buttons">
+                        <div class="tier-buttons mt-auto">
                             <div class="space-y-3">
                                 <a href="https://paypal.me/2Mike3/390?country.x=IT&locale.x=it_IT&ff=0&note=Acquisto%20Pacchetto%20Essenziale%20-%20Sito%20Web%20390%E2%82%AC" target="_blank" class="paypal-btn w-full text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 block text-center" aria-label="Paga con PayPal">
                                     <i class="fab fa-paypal mr-2"></i>
@@ -1641,7 +1667,7 @@
                 <!-- Pacchetto Professionale -->
                 <div class="star-border floating fade-in professionale" style="animation-delay: 0.2s;">
                     <div class="star-border-content">
-                        <div class="tier-features">
+                        <div class="tier-features" style="flex-grow: 1;">
                             <div class="text-center mb-6">
                                 <h3 class="text-2xl font-bold mb-2 text-gray-900 dark:text-white">🥈 Professionale</h3>
                                 <p class="text-slate-700 dark:text-slate-300">Il perfetto equilibrio tra qualità e prezzo. Include tutto per partire subito!</p>
@@ -1685,7 +1711,7 @@
                             </div>
                         </div>
                         
-                        <div class="tier-buttons">
+                        <div class="tier-buttons mt-auto">
                             <div class="space-y-3">
                                 <a href="https://paypal.me/2Mike3/490?country.x=IT&locale.x=it_IT&ff=0&note=Acquisto%20Pacchetto%20Professionale%20-%20Sito%20Web%20490%E2%82%AC%20-%20Scelta%20Consigliata" target="_blank" class="paypal-btn w-full text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 block text-center" aria-label="Paga con PayPal">
                                     <i class="fab fa-paypal mr-2"></i>
@@ -1704,7 +1730,7 @@
                 <!-- Pacchetto Continuativo -->
                 <div class="star-border floating fade-in continuativo" style="animation-delay: 0.4s;">
                     <div class="star-border-content">
-                        <div class="tier-features">
+                        <div class="tier-features" style="flex-grow: 1;">
                             <div class="text-center mb-6">
                                 <h3 class="text-2xl font-bold mb-2 text-gray-900 dark:text-white">
                                     🥇 Continuativo
@@ -2152,7 +2178,7 @@
             savePreferences();
         }
         
-        // Set up event listeners
+        // set up event listeners
         document.getElementById('accept-all-cookies').addEventListener('click', acceptAllCookies);
         document.getElementById('accept-essential-cookies').addEventListener('click', acceptEssentialOnly);
         document.getElementById('cookie-settings').addEventListener('click', openCookieModal);
